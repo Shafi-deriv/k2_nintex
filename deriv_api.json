@@ -5,7 +5,7 @@
     "title": "REST APIs for Automation",
     "description": "K2-compatible Swagger file for POI Data, Add Remarks, and Account Balance endpoints."
   },
-  "host": "api.example.io",
+  "host": "x6pr-kqwm-lfqn.n7d.xano.io",
   "basePath": "/api:ekyZ8a89",
   "schemes": [
     "https"
