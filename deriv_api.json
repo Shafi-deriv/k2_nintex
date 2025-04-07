@@ -3,22 +3,25 @@
   "info": {
     "version": "1.0.0",
     "title": "Get POI Data API (Wrapped Array for K2)",
-    "description": "Returns POI verification types and statuses wrapped in an object for K2 compatibility."
+    "description": "Returns POI verification types and statuses in K2-compatible format."
   },
-"host": "x6pr-kqwm-lfqn.n7d.xano.io",
-"basePath": "/api:ekyZ8a89"
+  "host": "x6pr-kqwm-lfqn.n7d.xano.io",
+  "basePath": "/api:ekyZ8a89",
   "schemes": [
     "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
   ],
   "paths": {
     "/GetPOIData": {
       "get": {
         "summary": "Get POI Data",
-        "description": "Returns POI verification types and their statuses wrapped in an object.",
+        "description": "Returns POI verification types and their statuses.",
         "operationId": "getPOIData",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "platform_code",
@@ -41,26 +44,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Wrapped array of POI verification results",
+            "description": "List of POI verification results",
             "schema": {
-              "type": "object",
-              "properties": {
-                "results": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string",
-                        "example": "onfido"
-                      },
-                      "status": {
-                        "type": "string",
-                        "example": "verified"
-                      }
-                    }
-                  }
-                }
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/POIResult"
               }
             }
           },
@@ -77,7 +65,76 @@
           }
         }
       }
+    },
+    "/AddRemarks": {
+      "post": {
+        "summary": "Add Remarks",
+        "description": "Adds remarks to a workflow.",
+        "operationId": "addRemarks",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Remarks input",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddRemarksInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful addition of remarks",
+            "schema": {
+              "$ref": "#/definitions/AddRemarksResponse"
+            }
+          }
+        }
+      }
     }
   },
-  "definitions": {}
+  "definitions": {
+    "POIResult": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "onfido"
+        },
+        "status": {
+          "type": "string",
+          "example": "verified"
+        }
+      }
+    },
+    "AddRemarksInput": {
+      "type": "object",
+      "properties": {
+        "platform_code": {
+          "type": "string"
+        },
+        "workflow_id": {
+          "type": "string"
+        },
+        "login_id": {
+          "type": "string"
+        },
+        "remarks_text": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      }
+    },
+    "AddRemarksResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "example": 0
+        }
+      }
+    }
+  }
 }
