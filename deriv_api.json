@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "REST APIS for automation",
-    "description": "REST APIS for automation K2-compatible format."
+    "title": "REST APIs for Automation",
+    "description": "K2-compatible Swagger file for POI Data, Add Remarks, and Account Balance endpoints."
   },
   "host": "x6pr-kqwm-lfqn.n7d.xano.io",
   "basePath": "/api:ekyZ8a89",
@@ -44,7 +44,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of POI verification results",
+            "description": "Array of POI verification results",
             "schema": {
               "type": "array",
               "items": {
@@ -91,6 +91,55 @@
           }
         }
       }
+    },
+    "/GetAccountBalance": {
+      "get": {
+        "summary": "Get Account Balance",
+        "description": "Returns the account balance for a given account ID.",
+        "operationId": "getAccountBalance",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "platform_code",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "account_id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "created_by",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account balance response",
+            "schema": {
+              "$ref": "#/definitions/AccountBalanceResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -133,6 +182,15 @@
         "id": {
           "type": "integer",
           "example": 0
+        }
+      }
+    },
+    "AccountBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "account_balance": {
+          "type": "number",
+          "example": 999
         }
       }
     }
