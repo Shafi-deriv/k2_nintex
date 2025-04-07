@@ -1,0 +1,83 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Get POI Data API (Wrapped Array for K2)",
+    "description": "Returns POI verification types and statuses wrapped in an object for K2 compatibility."
+  },
+"host": "x6pr-kqwm-lfqn.n7d.xano.io",
+"basePath": "/api:ekyZ8a89"
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/GetPOIData": {
+      "get": {
+        "summary": "Get POI Data",
+        "description": "Returns POI verification types and their statuses wrapped in an object.",
+        "operationId": "getPOIData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "platform_code",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "login_id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "created_by",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped array of POI verification results",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "onfido"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "verified"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {}
+}
