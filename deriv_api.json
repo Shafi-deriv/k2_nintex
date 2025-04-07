@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Get POI Data API (Wrapped Array for K2)",
-    "description": "Returns POI verification types and statuses in K2-compatible format."
+    "title": "REST APIS for automation",
+    "description": "REST APIS for automation K2-compatible format."
   },
   "host": "x6pr-kqwm-lfqn.n7d.xano.io",
   "basePath": "/api:ekyZ8a89",
