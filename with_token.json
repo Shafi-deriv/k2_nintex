@@ -2,11 +2,11 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Client Documents API",
-    "description": "K2-compatible Swagger for retrieving client documents via CGI endpoint."
+    "title": "REST APIs for Automation",
+    "description": "K2-compatible Swagger file for POI Data, Add Remarks, Account Balance, and Duplicate Account endpoints."
   },
-  "host": "dtnr83vvte.execute-api.us-east-1.amazonaws.com",
-  "basePath": "/api_v1/d/backoffice",
+  "host": "x6pr-kqwm-lfqn.n7d.xano.io",
+  "basePath": "/api:QQZDcMfq",
   "schemes": [
     "https"
   ],
@@ -17,38 +17,24 @@
     "application/json"
   ],
   "paths": {
-    "/client_documents.cgi": {
+    "/v1-bridge/duplicate-account": {
       "get": {
-        "summary": "Get Client Documents",
-        "description": "Retrieves client document records based on login ID.",
-        "operationId": "getClientDocuments",
+        "summary": "Check Duplicate Account",
+        "description": "Checks if a given user ID is a duplicate account and provides related metadata.",
+        "operationId": "checkDuplicateAccount",
         "parameters": [
           {
-            "name": "loginid",
+            "name": "user_id",
             "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
             "type": "string",
-            "description": "Bearer token to be passed at runtime"
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": "API key passed at runtime"
+            "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "Successful response with document data",
+            "description": "Duplicate account check result",
             "schema": {
-              "type": "object"
+              "$ref": "#/definitions/DuplicateAccountResponse"
             }
           },
           "default": {
@@ -56,10 +42,71 @@
             "schema": {
               "type": "object",
               "properties": {
-                "error": {
+                "message": {
                   "type": "string"
                 }
               }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "DuplicateAccountResponse": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "type": "object",
+          "properties": {
+            "endpoint": {
+              "type": "string",
+              "example": "/api:QQZDcMfq/v1-bridge/duplicate-account?user_id=CR0000001"
+            },
+            "verb": {
+              "type": "string",
+              "example": "GET"
+            }
+          }
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "is_duplicate_acc": {
+              "type": "boolean",
+              "example": false
+            },
+            "duplicate_acc_confidence": {
+              "type": "integer",
+              "example": 80
+            },
+            "acc_to_disable_confidence": {
+              "type": "integer",
+              "example": 85
+            },
+            "acc_to_disable": {
+              "type": "string",
+              "example": "CR12345"
+            },
+            "regulated_acc": {
+              "type": "boolean",
+              "example": true
+            },
+            "duplicate_acc_type": {
+              "type": "string",
+              "example": "CFD"
+            },
+            "duplicate_acc_funds": {
+              "type": "number",
+              "example": 4
+            },
+            "open_positions": {
+              "type": "boolean",
+              "example": false
+            },
+            "suspected_fraud_lvl": {
+              "type": "integer",
+              "example": 55
             }
           }
         }
