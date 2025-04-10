@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "REST APIs for Automation",
-    "description": "K2-compatible Swagger file for POI Data, Add Remarks, and Account Balance endpoints."
+    "description": "K2-compatible Swagger file for POI Data, Add Remarks, Account Balance, and Lock endpoints."
   },
   "host": "x6pr-kqwm-lfqn.n7d.xano.io",
   "basePath": "/api:ekyZ8a89",
@@ -140,6 +140,40 @@
           }
         }
       }
+    },
+    "/AddLock": {
+      "post": {
+        "summary": "Add Lock",
+        "description": "Adds a lock to the system.",
+        "operationId": "addLock",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Lock input",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddLockInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -191,6 +225,23 @@
         "account_balance": {
           "type": "number",
           "example": 999
+        }
+      }
+    },
+    "AddLockInput": {
+      "type": "object",
+      "properties": {
+        "platform_code": {
+          "type": "string"
+        },
+        "lock_code": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
         }
       }
     }
