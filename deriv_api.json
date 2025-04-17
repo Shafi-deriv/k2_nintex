@@ -159,7 +159,10 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+          "description": "Successful addition of lock",
+            "schema": {
+              "$ref": "#/definitions/AddLockResponse"
+            }
           },
           "default": {
             "description": "Unexpected error",
