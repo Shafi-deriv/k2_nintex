@@ -3,19 +3,13 @@
   "info": {
     "version": "1.0.0",
     "title": "REST APIs for Automation",
-    "description": "K2-compatible Swagger file for POI Data, Add Remarks, Account Balance, and Lock endpoints."
+    "description": "K2-compatible Swagger file for POI Data, Add Remarks, Account Balance, Lock, Open Positions, and Pending Orders endpoints."
   },
   "host": "x6pr-kqwm-lfqn.n7d.xano.io",
   "basePath": "/api:ekyZ8a89",
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
     "/GetPOIData": {
       "get": {
@@ -23,45 +17,21 @@
         "description": "Returns POI verification types and their statuses.",
         "operationId": "getPOIData",
         "parameters": [
-          {
-            "name": "platform_code",
-            "in": "query",
-            "type": "string",
-            "required": true
-          },
-          {
-            "name": "login_id",
-            "in": "query",
-            "type": "string",
-            "required": true
-          },
-          {
-            "name": "created_by",
-            "in": "query",
-            "type": "string",
-            "required": true
-          }
+          { "name": "platform_code", "in": "query", "type": "string", "required": true },
+          { "name": "login_id", "in": "query", "type": "string", "required": true },
+          { "name": "created_by", "in": "query", "type": "string", "required": true }
         ],
         "responses": {
           "200": {
             "description": "Array of POI verification results",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/definitions/POIResult"
-              }
+              "items": { "$ref": "#/definitions/POIResult" }
             }
           },
           "default": {
             "description": "Unexpected error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
-            }
+            "schema": { "type": "object", "properties": { "message": { "type": "string" } } }
           }
         }
       }
@@ -77,17 +47,13 @@
             "name": "body",
             "description": "Remarks input",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/AddRemarksInput"
-            }
+            "schema": { "$ref": "#/definitions/AddRemarksInput" }
           }
         ],
         "responses": {
           "200": {
             "description": "Successful addition of remarks",
-            "schema": {
-              "$ref": "#/definitions/AddRemarksResponse"
-            }
+            "schema": { "$ref": "#/definitions/AddRemarksResponse" }
           }
         }
       }
@@ -98,42 +64,18 @@
         "description": "Returns the account balance for a given account ID.",
         "operationId": "getAccountBalance",
         "parameters": [
-          {
-            "name": "platform_code",
-            "in": "query",
-            "type": "string",
-            "required": true
-          },
-          {
-            "name": "account_id",
-            "in": "query",
-            "type": "string",
-            "required": true
-          },
-          {
-            "name": "created_by",
-            "in": "query",
-            "type": "string",
-            "required": true
-          }
+          { "name": "platform_code", "in": "query", "type": "string", "required": true },
+          { "name": "account_id", "in": "query", "type": "string", "required": true },
+          { "name": "created_by", "in": "query", "type": "string", "required": true }
         ],
         "responses": {
           "200": {
             "description": "Account balance response",
-            "schema": {
-              "$ref": "#/definitions/AccountBalanceResponse"
-            }
+            "schema": { "$ref": "#/definitions/AccountBalanceResponse" }
           },
           "default": {
             "description": "Unexpected error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
-            }
+            "schema": { "type": "object", "properties": { "message": { "type": "string" } } }
           }
         }
       }
@@ -149,28 +91,49 @@
             "name": "body",
             "description": "Lock input",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/AddLockInput"
-            }
+            "schema": { "$ref": "#/definitions/AddLockInput" }
           }
         ],
         "responses": {
           "200": {
             "description": "Successful addition of lock",
-            "schema": {
-              "$ref": "#/definitions/AddLockResponse"
-            }
+            "schema": { "$ref": "#/definitions/AddLockResponse" }
           },
           "default": {
             "description": "Unexpected error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
-            }
+            "schema": { "type": "object", "properties": { "message": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/open-positions": {
+      "get": {
+        "summary": "Get Open Positions",
+        "description": "Fetches open trading positions for a login ID.",
+        "operationId": "getOpenPositions",
+        "parameters": [
+          { "name": "loginid", "in": "query", "type": "string", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Open positions response",
+            "schema": { "$ref": "#/definitions/OpenPositionsResponse" }
+          }
+        }
+      }
+    },
+    "/pending-orders": {
+      "get": {
+        "summary": "Get Pending Orders",
+        "description": "Fetches pending trading orders for a login ID.",
+        "operationId": "getPendingOrders",
+        "parameters": [
+          { "name": "loginid", "in": "query", "type": "string", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pending orders response",
+            "schema": { "$ref": "#/definitions/PendingOrdersResponse" }
           }
         }
       }
@@ -180,77 +143,107 @@
     "POIResult": {
       "type": "object",
       "properties": {
-        "type": {
-          "type": "string",
-          "example": "onfido"
-        },
-        "status": {
-          "type": "string",
-          "example": "verified"
-        }
+        "type": { "type": "string", "example": "onfido" },
+        "status": { "type": "string", "example": "verified" }
       }
     },
     "AddRemarksInput": {
       "type": "object",
       "properties": {
-        "platform_code": {
-          "type": "string"
-        },
-        "workflow_id": {
-          "type": "string"
-        },
-        "login_id": {
-          "type": "string"
-        },
-        "remarks_text": {
-          "type": "string"
-        },
-        "created_by": {
-          "type": "string"
-        }
+        "platform_code": { "type": "string" },
+        "workflow_id": { "type": "string" },
+        "login_id": { "type": "string" },
+        "remarks_text": { "type": "string" },
+        "created_by": { "type": "string" }
       }
     },
     "AddRemarksResponse": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "example": 0
-        }
+        "id": { "type": "integer", "example": 0 }
       }
     },
     "AccountBalanceResponse": {
       "type": "object",
       "properties": {
-        "balance": {
-          "type": "number",
-          "example": 999
-        }
+        "balance": { "type": "number", "example": 999 }
       }
     },
     "AddLockInput": {
       "type": "object",
       "properties": {
-        "platform_code": {
-          "type": "string"
-        },
-        "lock_code": {
-          "type": "string"
-        },
-        "context_id": {
-          "type": "string"
-        },
-        "created_by": {
-          "type": "string"
-        }
+        "platform_code": { "type": "string" },
+        "lock_code": { "type": "string" },
+        "context_id": { "type": "string" },
+        "created_by": { "type": "string" }
       }
     },
     "AddLockResponse": {
       "type": "object",
       "properties": {
-        "success_ind": {
-          "type": "integer",
-          "example": 0
+        "success_ind": { "type": "integer", "example": 0 }
+      }
+    },
+    "OpenPositionsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "position_id": { "type": "integer" },
+              "login": { "type": "integer" },
+              "symbol": { "type": "string" },
+              "time_create": { "type": "string" },
+              "contract_size": { "type": "string" },
+              "profit": { "type": "string" },
+              "price_open": { "type": "string" },
+              "price_current": { "type": "string" }
+            }
+          }
+        },
+        "meta": {
+          "type": "object",
+          "properties": {
+            "endpoint": { "type": "string" },
+            "method": { "type": "string" },
+            "timing": { "type": "integer" },
+            "total_records": { "type": "integer" },
+            "total_pages": { "type": "integer" },
+            "current_page": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "PendingOrdersResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "order": { "type": "integer" },
+              "login": { "type": "integer" },
+              "symbol": { "type": "string" },
+              "contract_size": { "type": "string" },
+              "price_order": { "type": "string" },
+              "price_current": { "type": "string" },
+              "time_setup": { "type": "string" }
+            }
+          }
+        },
+        "meta": {
+          "type": "object",
+          "properties": {
+            "endpoint": { "type": "string" },
+            "method": { "type": "string" },
+            "timing": { "type": "integer" },
+            "total_records": { "type": "integer" },
+            "total_pages": { "type": "integer" },
+            "current_page": { "type": "integer" }
+          }
         }
       }
     }
