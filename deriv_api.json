@@ -222,7 +222,7 @@
     "AccountBalanceResponse": {
       "type": "object",
       "properties": {
-        "account_balance": {
+        "balance": {
           "type": "number",
           "example": 999
         }
