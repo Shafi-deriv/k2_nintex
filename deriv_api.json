@@ -137,6 +137,44 @@
           }
         }
       }
+    },
+    "/open-positions/data": {
+      "get": {
+        "summary": "Get Open Positions Data Only",
+        "description": "Returns only the 'data' array for open positions, useful for deserialization in K2.",
+        "operationId": "getOpenPositionsData",
+        "parameters": [
+          { "name": "loginid", "in": "query", "type": "string", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Open positions array",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/OpenPosition" }
+            }
+          }
+        }
+      }
+    },
+    "/pending-orders/data": {
+      "get": {
+        "summary": "Get Pending Orders Data Only",
+        "description": "Returns only the 'data' array for pending orders, useful for deserialization in K2.",
+        "operationId": "getPendingOrdersData",
+        "parameters": [
+          { "name": "loginid", "in": "query", "type": "string", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pending orders array",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/PendingOrder" }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -184,24 +222,37 @@
         "success_ind": { "type": "integer", "example": 0 }
       }
     },
+    "OpenPosition": {
+      "type": "object",
+      "properties": {
+        "position_id": { "type": "integer" },
+        "login": { "type": "integer" },
+        "symbol": { "type": "string" },
+        "time_create": { "type": "string" },
+        "contract_size": { "type": "string" },
+        "profit": { "type": "string" },
+        "price_open": { "type": "string" },
+        "price_current": { "type": "string" }
+      }
+    },
+    "PendingOrder": {
+      "type": "object",
+      "properties": {
+        "order": { "type": "integer" },
+        "login": { "type": "integer" },
+        "symbol": { "type": "string" },
+        "contract_size": { "type": "string" },
+        "price_order": { "type": "string" },
+        "price_current": { "type": "string" },
+        "time_setup": { "type": "string" }
+      }
+    },
     "OpenPositionsResponse": {
       "type": "object",
       "properties": {
         "data": {
           "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "position_id": { "type": "integer" },
-              "login": { "type": "integer" },
-              "symbol": { "type": "string" },
-              "time_create": { "type": "string" },
-              "contract_size": { "type": "string" },
-              "profit": { "type": "string" },
-              "price_open": { "type": "string" },
-              "price_current": { "type": "string" }
-            }
-          }
+          "items": { "$ref": "#/definitions/OpenPosition" }
         },
         "meta": {
           "type": "object",
@@ -221,18 +272,7 @@
       "properties": {
         "data": {
           "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "order": { "type": "integer" },
-              "login": { "type": "integer" },
-              "symbol": { "type": "string" },
-              "contract_size": { "type": "string" },
-              "price_order": { "type": "string" },
-              "price_current": { "type": "string" },
-              "time_setup": { "type": "string" }
-            }
-          }
+          "items": { "$ref": "#/definitions/PendingOrder" }
         },
         "meta": {
           "type": "object",
