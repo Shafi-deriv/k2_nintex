@@ -1,0 +1,278 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "K2-Compatible REST APIs",
+    "description": "Example Swagger file formatted per Nintex K2 requirements: https://help.nintex.com/en-US/k2five/userguide/current/Content/ServiceBrokers/EndPoints/REST_SwaggerFileReferenceFormat.htm"
+  },
+  "host": "x6pr-kqwm-lfqn.n7d.xano.io",
+  "basePath": "/api:ekyZ8a89",
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/GetPOIData": {
+      "get": {
+        "summary": "Get POI Data",
+        "description": "Returns POI verification types and their statuses.",
+        "operationId": "getPOIData",
+        "parameters": [
+          { "name": "platform_code", "in": "query", "type": "string", "required": true },
+          { "name": "login_id", "in": "query", "type": "string", "required": true },
+          { "name": "created_by", "in": "query", "type": "string", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of POI verification results",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/POIResult" }
+            }
+          }
+        }
+      }
+    },
+    "/AddRemarks": {
+      "post": {
+        "summary": "Add Remarks",
+        "description": "Adds remarks to a workflow.",
+        "operationId": "addRemarks",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/AddRemarksInput" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Remarks added",
+            "schema": { "$ref": "#/definitions/AddRemarksResponse" }
+          }
+        }
+      }
+    },
+    "/GetAccountBalance": {
+      "get": {
+        "summary": "Get Account Balance",
+        "operationId": "getAccountBalance",
+        "parameters": [
+          { "name": "platform_code", "in": "query", "type": "string", "required": true },
+          { "name": "account_id", "in": "query", "type": "string", "required": true },
+          { "name": "created_by", "in": "query", "type": "string", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account balance",
+            "schema": { "$ref": "#/definitions/AccountBalanceResponse" }
+          }
+        }
+      }
+    },
+    "/AddLock": {
+      "post": {
+        "summary": "Add Lock",
+        "operationId": "addLock",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/AddLockInput" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lock added",
+            "schema": { "$ref": "#/definitions/AddLockResponse" }
+          }
+        }
+      }
+    },
+    "/open-positions": {
+      "get": {
+        "summary": "Get Open Positions",
+        "operationId": "getOpenPositions",
+        "parameters": [
+          { "name": "loginid", "in": "query", "type": "string", "required": true }
+        ],
+        "responses": {
+          "200": { "schema": { "$ref": "#/definitions/OpenPositionsResponse" } }
+        }
+      }
+    },
+    
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/OpenPosition" }
+            }
+          }
+        }
+      }
+    },
+    "/pending-orders": {
+      "get": {
+        "summary": "Get Pending Orders",
+        "operationId": "getPendingOrders",
+        "parameters": [
+          { "name": "loginid", "in": "query", "type": "string", "required": true }
+        ],
+        "responses": {
+          "200": { "schema": { "$ref": "#/definitions/PendingOrdersResponse" } }
+        }
+      }
+    },
+    
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/PendingOrder" }
+            }
+          }
+        }
+      }
+    },
+    "/clients/sanctions-check": {
+      "get": {
+        "summary": "Client Sanctions Check",
+        "operationId": "getClientSanctionsStatus",
+        "parameters": [
+          { "name": "platform_code", "in": "query", "type": "string", "required": true },
+          { "name": "login_id", "in": "query", "type": "string", "required": true },
+          { "name": "created_by", "in": "query", "type": "string", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "schema": { "$ref": "#/definitions/SanctionsCheckResponse" }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "POIResult": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "status": { "type": "string" }
+      }
+    },
+    "AddRemarksInput": {
+      "type": "object",
+      "properties": {
+        "platform_code": { "type": "string" },
+        "workflow_id": { "type": "string" },
+        "login_id": { "type": "string" },
+        "remarks_text": { "type": "string" },
+        "created_by": { "type": "string" }
+      }
+    },
+    "AddRemarksResponse": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" }
+      }
+    },
+    "AccountBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "balance": { "type": "number" }
+      }
+    },
+    "AddLockInput": {
+      "type": "object",
+      "properties": {
+        "platform_code": { "type": "string" },
+        "lock_code": { "type": "string" },
+        "context_id": { "type": "string" },
+        "created_by": { "type": "string" }
+      }
+    },
+    "AddLockResponse": {
+      "type": "object",
+      "properties": {
+        "success_ind": { "type": "integer" }
+      }
+    },
+    "OpenPosition": {
+      "type": "object",
+      "properties": {
+        "position_id": { "type": "integer" },
+        "login": { "type": "integer" },
+        "symbol": { "type": "string" },
+        "time_create": { "type": "string" },
+        "contract_size": { "type": "string" },
+        "profit": { "type": "string" },
+        "price_open": { "type": "string" },
+        "price_current": { "type": "string" }
+      }
+    },
+    "PendingOrder": {
+      "type": "object",
+      "properties": {
+        "order": { "type": "integer" },
+        "login": { "type": "integer" },
+        "symbol": { "type": "string" },
+        "contract_size": { "type": "string" },
+        "price_order": { "type": "string" },
+        "price_current": { "type": "string" },
+        "time_setup": { "type": "string" }
+      }
+    },
+    "OpenPositionsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/OpenPosition" }
+        },
+        "meta": {
+          "type": "object",
+          "properties": {
+            "endpoint": { "type": "string" },
+            "method": { "type": "string" },
+            "timing": { "type": "integer" },
+            "total_records": { "type": "integer" },
+            "total_pages": { "type": "integer" },
+            "current_page": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "PendingOrdersResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/PendingOrder" }
+        },
+        "meta": {
+          "type": "object",
+          "properties": {
+            "endpoint": { "type": "string" },
+            "method": { "type": "string" },
+            "timing": { "type": "integer" },
+            "total_records": { "type": "integer" },
+            "total_pages": { "type": "integer" },
+            "current_page": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "SanctionsCheckResponse": {
+      "type": "object",
+      "properties": {
+        "sanction_exists": {
+          "type": "integer",
+          "example": 1
+        }
+      }
+    }
+  }
+}
