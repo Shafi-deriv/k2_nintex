@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "REST APIs for Automation",
-    "description": "K2-compatible Swagger file for POI Data, Add Remarks, Account Balance, Lock, Open Positions, and Pending Orders endpoints."
+    "description": "K2-compatible Swagger file for POI Data, Add Remarks, Account Balance, Lock, Open Positions, Pending Orders, and Sanctions Check endpoints."
   },
   "host": "x6pr-kqwm-lfqn.n7d.xano.io",
   "basePath": "/api:ekyZ8a89",
@@ -122,6 +122,25 @@
         }
       }
     },
+    "/open-positions/data": {
+      "get": {
+        "summary": "Get Open Positions Data Only",
+        "description": "Returns only the 'data' array for open positions.",
+        "operationId": "getOpenPositionsData",
+        "parameters": [
+          { "name": "loginid", "in": "query", "type": "string", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Open positions array",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/OpenPosition" }
+            }
+          }
+        }
+      }
+    },
     "/pending-orders": {
       "get": {
         "summary": "Get Pending Orders",
@@ -138,29 +157,10 @@
         }
       }
     },
-    "/open-positions/data": {
-      "get": {
-        "summary": "Get Open Positions Data Only",
-        "description": "Returns only the 'data' array for open positions, useful for deserialization in K2.",
-        "operationId": "getOpenPositionsData",
-        "parameters": [
-          { "name": "loginid", "in": "query", "type": "string", "required": true }
-        ],
-        "responses": {
-          "200": {
-            "description": "Open positions array",
-            "schema": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/OpenPosition" }
-            }
-          }
-        }
-      }
-    },
     "/pending-orders/data": {
       "get": {
         "summary": "Get Pending Orders Data Only",
-        "description": "Returns only the 'data' array for pending orders, useful for deserialization in K2.",
+        "description": "Returns only the 'data' array for pending orders.",
         "operationId": "getPendingOrdersData",
         "parameters": [
           { "name": "loginid", "in": "query", "type": "string", "required": true }
@@ -172,6 +172,28 @@
               "type": "array",
               "items": { "$ref": "#/definitions/PendingOrder" }
             }
+          }
+        }
+      }
+    },
+    "/CheckClientAgainstSanctionsList": {
+      "get": {
+        "summary": "Check Client Against Sanctions List",
+        "description": "Returns whether the client is found in the sanctions list.",
+        "operationId": "checkClientAgainstSanctionsList",
+        "parameters": [
+          { "name": "platform_code", "in": "query", "type": "string", "required": true },
+          { "name": "login_id", "in": "query", "type": "string", "required": true },
+          { "name": "created_by", "in": "query", "type": "string", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sanctions list check result",
+            "schema": { "$ref": "#/definitions/SanctionsCheckResponse" }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": { "type": "object", "properties": { "message": { "type": "string" } } }
           }
         }
       }
@@ -285,6 +307,12 @@
             "current_page": { "type": "integer" }
           }
         }
+      }
+    },
+    "SanctionsCheckResponse": {
+      "type": "object",
+      "properties": {
+        "sanction_exists": { "type": "integer", "example": 1 }
       }
     }
   }
