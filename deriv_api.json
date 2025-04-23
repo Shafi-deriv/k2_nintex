@@ -296,49 +296,6 @@
         }
       }
     },
-      "/NotifyClient": {
-      "post": {
-        "summary": "Notify Client",
-        "description": "Sends a notification to a specific client via a specified channel.",
-        "operationId": "notifyClient",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Notification payload",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/NotifyClientInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Notification created",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "integer",
-                  "example": 3
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/pending-orders/count": {
       "get": {
         "summary": "Get Pending Orders Count",
@@ -434,27 +391,6 @@
         }
       }
     },
-    "NotifyClientInput": {
-      "type": "object",
-      "properties": {
-        "platform_code": {
-          "type": "string"
-        },
-        "channel_code": {
-          "type": "string"
-        },
-        "login_id": {
-          "type": "string"
-        },
-        "notification_text": {
-          "type": "string"
-        },
-        "created_by": {
-          "type": "string"
-        }
-      }
-    }
-  },
     "AddLockResponse": {
       "type": "object",
       "properties": {
