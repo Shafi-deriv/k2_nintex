@@ -326,6 +326,49 @@
       }
     }
   },
+   "/NotifyClient": {
+      "post": {
+        "summary": "Notify Client",
+        "description": "Sends a notification to a specific client via a specified channel.",
+        "operationId": "notifyClient",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Notification payload",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NotifyClientInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Notification created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": 3
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
   "definitions": {
     "POIResult": {
       "type": "object",
