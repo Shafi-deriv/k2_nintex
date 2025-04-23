@@ -1,0 +1,505 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST APIs for Automation",
+    "description": "K2-compatible Swagger file for POI Data, Add Remarks, Account Balance, Lock, Open Positions, Pending Orders, and Sanctions Check endpoints."
+  },
+  "host": "x6pr-kqwm-lfqn.n7d.xano.io",
+  "basePath": "/api:ekyZ8a89",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/GetPOIData": {
+      "get": {
+        "summary": "Get POI Data",
+        "description": "Returns POI verification types and their statuses.",
+        "operationId": "getPOIData",
+        "parameters": [
+          {
+            "name": "platform_code",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "login_id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "created_by",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of POI verification results",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/POIResult"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/AddRemarks": {
+      "post": {
+        "summary": "Add Remarks",
+        "description": "Adds remarks to a workflow.",
+        "operationId": "addRemarks",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Remarks input",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddRemarksInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful addition of remarks",
+            "schema": {
+              "$ref": "#/definitions/AddRemarksResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/GetAccountBalance": {
+      "get": {
+        "summary": "Get Account Balance",
+        "description": "Returns the account balance for a given account ID.",
+        "operationId": "getAccountBalance",
+        "parameters": [
+          {
+            "name": "platform_code",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "account_id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "created_by",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account balance response",
+            "schema": {
+              "$ref": "#/definitions/AccountBalanceResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/AddLock": {
+      "post": {
+        "summary": "Add Lock",
+        "description": "Adds a lock to the system.",
+        "operationId": "addLock",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Lock input",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddLockInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful addition of lock",
+            "schema": {
+              "$ref": "#/definitions/AddLockResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/open-positions": {
+      "get": {
+        "summary": "Get Open Positions",
+        "description": "Fetches open trading positions for a login ID.",
+        "operationId": "getOpenPositions",
+        "parameters": [
+          {
+            "name": "loginid",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Open positions response",
+            "schema": {
+              "$ref": "#/definitions/OpenPositionsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/pending-orders": {
+      "get": {
+        "summary": "Get Pending Orders",
+        "description": "Fetches pending trading orders for a login ID.",
+        "operationId": "getPendingOrders",
+        "parameters": [
+          {
+            "name": "loginid",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pending orders response",
+            "schema": {
+              "$ref": "#/definitions/PendingOrdersResponse"
+            }
+          }
+        }
+      }
+    },
+    "/CheckClientAgainstSanctionsList": {
+      "get": {
+        "summary": "Check Client Against Sanctions List",
+        "description": "Returns whether the client is found in the sanctions list.",
+        "operationId": "checkClientAgainstSanctionsList",
+        "parameters": [
+          {
+            "name": "platform_code",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "login_id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "created_by",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sanctions list check result",
+            "schema": {
+              "$ref": "#/definitions/SanctionsCheckResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/NotifyClient": {
+      "post": {
+        "summary": "Notify Client",
+        "description": "Sends a notification to a specific client via a specified channel.",
+        "operationId": "notifyClient",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Notification payload",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NotifyClientInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Notification created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": 3
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "POIResult": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "AddRemarksInput": {
+      "type": "object",
+      "properties": {
+        "platform_code": {
+          "type": "string"
+        },
+        "workflow_id": {
+          "type": "string"
+        },
+        "login_id": {
+          "type": "string"
+        },
+        "remarks_text": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      }
+    },
+    "AddRemarksResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        }
+      }
+    },
+    "AccountBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "balance": {
+          "type": "number"
+        }
+      }
+    },
+    "AddLockInput": {
+      "type": "object",
+      "properties": {
+        "platform_code": {
+          "type": "string"
+        },
+        "lock_code": {
+          "type": "string"
+        },
+        "context_id": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      }
+    },
+    "AddLockResponse": {
+      "type": "object",
+      "properties": {
+        "success_ind": {
+          "type": "integer"
+        }
+      }
+    },
+    "OpenPosition": {
+      "type": "object",
+      "properties": {
+        "position_id": {
+          "type": "integer"
+        },
+        "login": {
+          "type": "integer"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "time_create": {
+          "type": "string"
+        },
+        "contract_size": {
+          "type": "string"
+        },
+        "profit": {
+          "type": "string"
+        },
+        "price_open": {
+          "type": "string"
+        },
+        "price_current": {
+          "type": "string"
+        }
+      }
+    },
+    "PendingOrder": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "type": "integer"
+        },
+        "login": {
+          "type": "integer"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "contract_size": {
+          "type": "string"
+        },
+        "price_order": {
+          "type": "string"
+        },
+        "price_current": {
+          "type": "string"
+        },
+        "time_setup": {
+          "type": "string"
+        }
+      }
+    },
+    "OpenPositionsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OpenPosition"
+          }
+        }
+      }
+    },
+    "PendingOrdersResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PendingOrder"
+          }
+        }
+      }
+    },
+    "SanctionsCheckResponse": {
+      "type": "object",
+      "properties": {
+        "sanction_exists": {
+          "type": "integer",
+          "example": 1
+        }
+      }
+    },
+    "NotifyClientInput": {
+      "type": "object",
+      "properties": {
+        "platform_code": {
+          "type": "string"
+        },
+        "channel_code": {
+          "type": "string"
+        },
+        "login_id": {
+          "type": "string"
+        },
+        "notification_text": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
