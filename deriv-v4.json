@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "REST APIs for Automation",
-    "description": "K2-compatible Swagger file for POI Data, Add Remarks, Account Balance, Lock, Open Positions, Pending Orders, and Sanctions Check endpoints."
+    "description": "K2-compatible Swagger file for POI Data, Add Remarks, Account Balance, Lock, Open Positions, Pending Orders, Notify Client, Open/Pending Orders Count, and Sanctions Check endpoints."
   },
   "host": "x6pr-kqwm-lfqn.n7d.xano.io",
   "basePath": "/api:ekyZ8a89",
@@ -209,6 +209,35 @@
         }
       }
     },
+    "/open-positions/count": {
+      "get": {
+        "summary": "Get Open Positions Count",
+        "description": "Returns the count of open positions for a given account.",
+        "operationId": "getOpenPositionsCount",
+        "parameters": [
+          {
+            "name": "platform",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "account_id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Open positions count",
+            "schema": {
+              "$ref": "#/definitions/CountResponse"
+            }
+          }
+        }
+      }
+    },
     "/pending-orders": {
       "get": {
         "summary": "Get Pending Orders",
@@ -227,6 +256,35 @@
             "description": "Pending orders response",
             "schema": {
               "$ref": "#/definitions/PendingOrdersResponse"
+            }
+          }
+        }
+      }
+    },
+    "/pending-orders/count": {
+      "get": {
+        "summary": "Get Pending Orders Count",
+        "description": "Returns the count of pending orders for a given account.",
+        "operationId": "getPendingOrdersCount",
+        "parameters": [
+          {
+            "name": "platform",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "account_id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pending orders count",
+            "schema": {
+              "$ref": "#/definitions/CountResponse"
             }
           }
         }
@@ -298,13 +356,7 @@
           "200": {
             "description": "Notification created",
             "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "integer",
-                  "example": 3
-                }
-              }
+              "$ref": "#/definitions/NotifyClientResponse"
             }
           },
           "default": {
@@ -498,6 +550,23 @@
         },
         "created_by": {
           "type": "string"
+        }
+      }
+    },
+    "NotifyClientResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        }
+      }
+    },
+    "CountResponse": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "example": 42
         }
       }
     }
