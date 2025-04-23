@@ -442,6 +442,27 @@
         }
       }
     },
+     "NotifyClientInput": {
+      "type": "object",
+      "properties": {
+        "platform_code": {
+          "type": "string"
+        },
+        "channel_code": {
+          "type": "string"
+        },
+        "login_id": {
+          "type": "string"
+        },
+        "notification_text": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      }
+    }
+  },
     "OpenPosition": {
       "type": "object",
       "properties": {
