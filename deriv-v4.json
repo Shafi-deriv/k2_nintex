@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "REST APIs for Automation",
-    "description": "K2-compatible Swagger file for POI Data, Add Remarks, Account Balance, Lock, Open Positions, Pending Orders, Notify Client, Open/Pending Orders Count, and Sanctions Check endpoints."
+    "description": "K2-compatible Swagger file for POI Data, Add/Remove Lock, Add Remarks, Enable Proof Of Ownership, Disable Account, Account Balance, Open Positions, Pending Orders, Notify Client, Open/Pending Orders Count, and Sanctions Check endpoints."
   },
   "host": "x6pr-kqwm-lfqn.n7d.xano.io",
   "basePath": "/api:ekyZ8a89",
@@ -170,6 +170,117 @@
             "description": "Successful addition of lock",
             "schema": {
               "$ref": "#/definitions/AddLockResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/RemoveLock": {
+      "post": {
+        "summary": "Remove Lock",
+        "description": "Removes a lock from the system.",
+        "operationId": "removeLock",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Lock removal input",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RemoveLockInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lock removal result",
+            "schema": {
+              "$ref": "#/definitions/SimpleSuccessResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DisableAccount": {
+      "post": {
+        "summary": "Disable Account",
+        "description": "Disables the specified account.",
+        "operationId": "disableAccount",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Disable account input",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DisableAccountInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Disable account result",
+            "schema": {
+              "$ref": "#/definitions/SimpleSuccessResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/EnableProofOfOwnership": {
+      "post": {
+        "summary": "Enable Proof Of Ownership",
+        "description": "Enables proof of ownership for the specified login_id.",
+        "operationId": "enableProofOfOwnership",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Enable Proof Of Ownership input",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EnableProofOfOwnershipInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Enable Proof Of Ownership result",
+            "schema": {
+              "$ref": "#/definitions/SimpleSuccessResponse"
             }
           },
           "default": {
@@ -410,6 +521,59 @@
       "type": "object",
       "properties": {
         "id": {
+          "type": "integer"
+        }
+      }
+    },
+    "DisableAccountInput": {
+      "type": "object",
+      "properties": {
+        "platform_code": {
+          "type": "string"
+        },
+        "account_id": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      }
+    },
+    "EnableProofOfOwnershipInput": {
+      "type": "object",
+      "properties": {
+        "platform_code": {
+          "type": "string"
+        },
+        "login_id": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      }
+    },
+    "RemoveLockInput": {
+      "type": "object",
+      "properties": {
+        "platform_code": {
+          "type": "string"
+        },
+        "lock_code": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      }
+    },
+    "SimpleSuccessResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
           "type": "integer"
         }
       }
