@@ -5,8 +5,8 @@
     "title": "REST APIs for Automation",
     "description": "K2-compatible Swagger file for POI Data, Add/Remove Lock, Add Remarks, Enable Proof Of Ownership, Disable Account, Account Balance, Open Positions, Pending Orders, Notify Client, Open/Pending Orders Count, and Sanctions Check endpoints."
   },
-  "host": "x6pr-kqwm-lfqn.n7d.xano.io",
-  "basePath": "/api:ekyZ8a89",
+  "host": "deriv-app.xano.io",
+  "basePath": "api:ekyZ8a89",
   "schemes": [
     "https"
   ],
