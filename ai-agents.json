@@ -3,19 +3,15 @@
   "info": {
     "version": "1.0.0",
     "title": "REST APIs for AI-Agents-Automation",
-    "description": "K2-compatible Swagger file for POI Data, Add Remarks, Account Balance, Duplicate Account, Required Screening, and Proof Of Ownership validation endpoints."
+    "description": "K2-compatible Swagger file for Duplicate Account, Required Screening, and Proof Of Ownership validation endpoints."
   },
   "host": "deriv-app.xano.io",
   "basePath": "/api:QQZDcMfq",
   "schemes": [
     "https"
   ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
     "/v1-bridge/duplicate-account": {
       "get": {
@@ -23,65 +19,25 @@
         "description": "Checks if a given user ID is a duplicate account and provides related metadata.",
         "operationId": "checkDuplicateAccount",
         "parameters": [
-          {
-            "name": "user_id",
-            "in": "query",
-            "type": "string",
-            "required": true
-          }
+          { "name": "user_id", "in": "query", "type": "string", "required": true }
         ],
         "responses": {
-          "200": {
-            "description": "Duplicate account check result",
-            "schema": {
-              "$ref": "#/definitions/DuplicateAccountResponse"
-            }
-          },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
-            }
-          }
+          "200": { "description": "Duplicate account check result", "schema": { "$ref": "#/definitions/DuplicateAccountResponse" } },
+          "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
         }
       }
     },
     "/v1-bridge/duplicate-account/data": {
       "get": {
-        "summary": "Get Data",
+        "summary": "Get Duplicate Data",
         "description": "Returns the data for the duplicate account check.",
         "operationId": "getDuplicateAccountData",
         "parameters": [
-          {
-            "name": "user_id",
-            "in": "query",
-            "type": "string",
-            "required": true
-          }
+          { "name": "user_id", "in": "query", "type": "string", "required": true }
         ],
         "responses": {
-          "200": {
-            "description": "Data for the duplicate account check",
-            "schema": {
-              "$ref": "#/definitions/Data"
-            }
-          },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
-            }
-          }
+          "200": { "description": "Data for the duplicate account check", "schema": { "$ref": "#/definitions/DuplicateAccountData" } },
+          "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
         }
       }
     },
@@ -91,49 +47,31 @@
         "description": "Returns required screening for given broker, event and regulation status.",
         "operationId": "getRequiredScreening",
         "parameters": [
-          {
-            "name": "broker_code",
-            "in": "query",
-            "type": "string",
-            "required": true
-          },
-          {
-            "name": "event_name",
-            "in": "query",
-            "type": "string",
-            "required": true
-          },
-          {
-            "name": "regulated",
-            "in": "query",
-            "type": "boolean",
-            "required": true
-          },
-          {
-            "name": "jwt_token",
-            "in": "query",
-            "type": "string",
-            "required": true
-          }
+          { "name": "broker_code", "in": "query", "type": "string", "required": true },
+          { "name": "event_name", "in": "query", "type": "string", "required": true },
+          { "name": "regulated", "in": "query", "type": "boolean", "required": true },
+          { "name": "jwt_token", "in": "query", "type": "string", "required": true }
         ],
         "responses": {
-          "200": {
-            "description": "Required screening response",
-            "schema": {
-              "$ref": "#/definitions/RequiredScreeningResponse"
-            }
-          },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
-            }
-          }
+          "200": { "description": "Required screening response", "schema": { "$ref": "#/definitions/RequiredScreeningResponse" } },
+          "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
+        }
+      }
+    },
+    "/v1-bridge/required-screening/data": {
+      "get": {
+        "summary": "Get Required Screening Data",
+        "description": "Returns only required screening data.",
+        "operationId": "getRequiredScreeningData",
+        "parameters": [
+          { "name": "broker_code", "in": "query", "type": "string", "required": true },
+          { "name": "event_name", "in": "query", "type": "string", "required": true },
+          { "name": "regulated", "in": "query", "type": "boolean", "required": true },
+          { "name": "jwt_token", "in": "query", "type": "string", "required": true }
+        ],
+        "responses": {
+          "200": { "description": "Required screening data", "schema": { "$ref": "#/definitions/RequiredScreeningData" } },
+          "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
         }
       }
     },
@@ -143,37 +81,27 @@
         "description": "Validates proof of ownership for user.",
         "operationId": "validateProofOfOwnership",
         "parameters": [
-          {
-            "name": "user_id",
-            "in": "query",
-            "type": "string",
-            "required": true
-          },
-          {
-            "name": "jwt_token",
-            "in": "query",
-            "type": "string",
-            "required": true
-          }
+          { "name": "user_id", "in": "query", "type": "string", "required": true },
+          { "name": "jwt_token", "in": "query", "type": "string", "required": true }
         ],
         "responses": {
-          "200": {
-            "description": "Validation response",
-            "schema": {
-              "$ref": "#/definitions/ValidatePOOResponse"
-            }
-          },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
-            }
-          }
+          "200": { "description": "Validation response", "schema": { "$ref": "#/definitions/ValidatePOOResponse" } },
+          "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
+        }
+      }
+    },
+    "/v1-bridge/validate-poo/data": {
+      "get": {
+        "summary": "Get POO Validation Data",
+        "description": "Returns only validation data.",
+        "operationId": "getValidatePOOData",
+        "parameters": [
+          { "name": "user_id", "in": "query", "type": "string", "required": true },
+          { "name": "jwt_token", "in": "query", "type": "string", "required": true }
+        ],
+        "responses": {
+          "200": { "description": "Validation POO data", "schema": { "$ref": "#/definitions/ValidatePOOData" } },
+          "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
         }
       }
     }
@@ -185,60 +113,25 @@
         "meta": {
           "type": "object",
           "properties": {
-            "endpoint": {
-              "type": "string",
-              "example": "/api:QQZDcMfq/v1-bridge/duplicate-account?user_id=CR0000001"
-            },
-            "verb": {
-              "type": "string",
-              "example": "GET"
-            }
+            "endpoint": { "type": "string", "example": "/api:QQZDcMfq/v1-bridge/duplicate-account?user_id=CR0000001" },
+            "verb": { "type": "string", "example": "GET" }
           }
         },
-        "data": {
-          "$ref": "#/definitions/Data"
-        }
+        "data": { "$ref": "#/definitions/DuplicateAccountData" }
       }
     },
-    "Data": {
+    "DuplicateAccountData": {
       "type": "object",
       "properties": {
-        "is_duplicate_acc": {
-          "type": "boolean",
-          "example": false
-        },
-        "duplicate_acc_confidence": {
-          "type": "integer",
-          "example": 80
-        },
-        "acc_to_disable_confidence": {
-          "type": "integer",
-          "example": 85
-        },
-        "acc_to_disable": {
-          "type": "string",
-          "example": "CR12345"
-        },
-        "regulated_acc": {
-          "type": "boolean",
-          "example": true
-        },
-        "duplicate_acc_type": {
-          "type": "string",
-          "example": "CFD"
-        },
-        "duplicate_acc_funds": {
-          "type": "number",
-          "example": 4
-        },
-        "open_positions": {
-          "type": "boolean",
-          "example": false
-        },
-        "suspected_fraud_lvl": {
-          "type": "integer",
-          "example": 55
-        }
+        "is_duplicate_acc": { "type": "boolean", "example": false },
+        "duplicate_acc_confidence": { "type": "integer", "example": 80 },
+        "acc_to_disable_confidence": { "type": "integer", "example": 85 },
+        "acc_to_disable": { "type": "string", "example": "CR12345" },
+        "regulated_acc": { "type": "boolean", "example": true },
+        "duplicate_acc_type": { "type": "string", "example": "CFD" },
+        "duplicate_acc_funds": { "type": "number", "example": 4 },
+        "open_positions": { "type": "boolean", "example": false },
+        "suspected_fraud_lvl": { "type": "integer", "example": 55 }
       }
     },
     "RequiredScreeningResponse": {
@@ -247,26 +140,19 @@
         "meta": {
           "type": "object",
           "properties": {
-            "endpoint": {
-              "type": "string",
-              "example": "/api:QQZDcMfq/v1-bridge/required-screening?broker_code=CR&event_name=High%20Risk&regulated=true&jwt_token=rrr"
-            },
-            "verb": {
-              "type": "string",
-              "example": "GET"
-            }
+            "endpoint": { "type": "string", "example": "/api:QQZDcMfq/v1-bridge/required-screening?broker_code=CR&event_name=High%20Risk&regulated=true&jwt_token=rrr" },
+            "verb": { "type": "string", "example": "GET" }
           }
         },
-        "data": {
-          "type": "object",
-          "properties": {
-            "required_screening": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
+        "data": { "$ref": "#/definitions/RequiredScreeningData" }
+      }
+    },
+    "RequiredScreeningData": {
+      "type": "object",
+      "properties": {
+        "required_screening": {
+          "type": "array",
+          "items": { "type": "string" }
         }
       }
     },
@@ -276,41 +162,21 @@
         "meta": {
           "type": "object",
           "properties": {
-            "endpoint": {
-              "type": "string",
-              "example": "/api:QQZDcMfq/v1-bridge/validate-poo?user_id=Cr001&jwt_token=ghgh"
-            },
-            "verb": {
-              "type": "string",
-              "example": "GET"
-            }
+            "endpoint": { "type": "string", "example": "/api:QQZDcMfq/v1-bridge/validate-poo?user_id=Cr001&jwt_token=ghgh" },
+            "verb": { "type": "string", "example": "GET" }
           }
         },
-        "data": {
-          "type": "object",
-          "properties": {
-            "owner_acc": {
-              "type": "string",
-              "example": "CR01"
-            },
-            "sharer_acc": {
-              "type": "string",
-              "example": "CR02"
-            },
-            "poo_from_acc": {
-              "type": "string",
-              "example": "owner"
-            },
-            "num_of_cards_in_acc": {
-              "type": "integer",
-              "example": 1
-            },
-            "validation_confidence_lvl": {
-              "type": "integer",
-              "example": 50
-            }
-          }
-        }
+        "data": { "$ref": "#/definitions/ValidatePOOData" }
+      }
+    },
+    "ValidatePOOData": {
+      "type": "object",
+      "properties": {
+        "owner_acc": { "type": "string", "example": "CR01" },
+        "sharer_acc": { "type": "string", "example": "CR02" },
+        "poo_from_acc": { "type": "string", "example": "owner" },
+        "num_of_cards_in_acc": { "type": "integer", "example": 1 },
+        "validation_confidence_lvl": { "type": "integer", "example": 50 }
       }
     }
   }
