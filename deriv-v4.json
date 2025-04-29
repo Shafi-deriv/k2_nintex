@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "REST APIs for Automation",
-    "description": "K2-compatible Swagger file for POI Data, Add/Remove Lock, Add Remarks, Enable Proof Of Ownership, Disable Account, Account Balance, Open Positions, Pending Orders, Notify Client, Open/Pending Orders Count, and Sanctions Check endpoints."
+    "description": "K2-compatible Swagger file for POI Data, Add/Remove Lock, Add Remarks, Enable Proof Of Ownership, Disable Account, Account Balance, Open Positions, Pending Orders, Notify Client, Open/Pending Orders Count, Sanctions Check endpoints, and MT5 Account Balance."
   },
   "host": "deriv-app.xano.io",
   "basePath": "api:ekyZ8a89",
@@ -133,6 +133,52 @@
             "description": "Account balance response",
             "schema": {
               "$ref": "#/definitions/AccountBalanceResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/GetMT5AccountBalance": {
+      "get": {
+        "summary": "Get MT5 Account Balance",
+        "description": "Returns the MT5 account balance for a given login ID.",
+        "operationId": "getMT5AccountBalance",
+        "parameters": [
+          {
+            "name": "platform_code",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "mt5_login_id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "created_by",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MT5 account balance response",
+            "schema": {
+              "$ref": "#/definitions/MT5AccountBalanceResponse"
             }
           },
           "default": {
@@ -583,6 +629,15 @@
       "properties": {
         "balance": {
           "type": "number"
+        }
+      }
+    },
+    "MT5AccountBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "balance": {
+          "type": "number",
+          "example": 44.44
         }
       }
     },
