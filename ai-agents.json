@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "REST APIs for AI-Agents-Automation",
-    "description": "K2-compatible Swagger file for POI Data, Add Remarks, Account Balance, and Duplicate Account endpoints."
+    "description": "K2-compatible Swagger file for POI Data, Add Remarks, Account Balance, Duplicate Account, Required Screening, and Proof Of Ownership validation endpoints."
   },
   "host": "deriv-app.xano.io",
   "basePath": "/api:QQZDcMfq",
@@ -84,6 +84,98 @@
           }
         }
       }
+    },
+    "/v1-bridge/required-screening": {
+      "get": {
+        "summary": "Get Required Screening",
+        "description": "Returns required screening for given broker, event and regulation status.",
+        "operationId": "getRequiredScreening",
+        "parameters": [
+          {
+            "name": "broker_code",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "event_name",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "regulated",
+            "in": "query",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "jwt_token",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Required screening response",
+            "schema": {
+              "$ref": "#/definitions/RequiredScreeningResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1-bridge/validate-poo": {
+      "get": {
+        "summary": "Validate Proof Of Ownership",
+        "description": "Validates proof of ownership for user.",
+        "operationId": "validateProofOfOwnership",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "jwt_token",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validation response",
+            "schema": {
+              "$ref": "#/definitions/ValidatePOOResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -146,6 +238,78 @@
         "suspected_fraud_lvl": {
           "type": "integer",
           "example": 55
+        }
+      }
+    },
+    "RequiredScreeningResponse": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "type": "object",
+          "properties": {
+            "endpoint": {
+              "type": "string",
+              "example": "/api:QQZDcMfq/v1-bridge/required-screening?broker_code=CR&event_name=High%20Risk&regulated=true&jwt_token=rrr"
+            },
+            "verb": {
+              "type": "string",
+              "example": "GET"
+            }
+          }
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "required_screening": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "ValidatePOOResponse": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "type": "object",
+          "properties": {
+            "endpoint": {
+              "type": "string",
+              "example": "/api:QQZDcMfq/v1-bridge/validate-poo?user_id=Cr001&jwt_token=ghgh"
+            },
+            "verb": {
+              "type": "string",
+              "example": "GET"
+            }
+          }
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "owner_acc": {
+              "type": "string",
+              "example": "CR01"
+            },
+            "sharer_acc": {
+              "type": "string",
+              "example": "CR02"
+            },
+            "poo_from_acc": {
+              "type": "string",
+              "example": "owner"
+            },
+            "num_of_cards_in_acc": {
+              "type": "integer",
+              "example": 1
+            },
+            "validation_confidence_lvl": {
+              "type": "integer",
+              "example": 50
+            }
+          }
         }
       }
     }
