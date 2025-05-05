@@ -789,15 +789,6 @@
         }
       }
     },
-    "SanctionsCheckResponse": {
-      "type": "object",
-      "properties": {
-        "sanction_exists": {
-          "type": "integer",
-          "example": 1
-        }
-      }
-    },
      "SanctionsCheckResponse": {
       "type": "object",
       "properties": {
