@@ -493,6 +493,52 @@
         }
       }
     },
+     "/CheckClientAgainst3rdPartyWatchlist": {
+      "get": {
+        "summary": "Check Client Against 3rd Party Watchlist",
+        "description": "Returns whether the client is found in any 3rd party watchlist.",
+        "operationId": "checkClientAgainst3rdPartyWatchlist",
+        "parameters": [
+          {
+            "name": "platform_code",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "login_id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "created_by",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "3rd party watchlist check result",
+            "schema": {
+              "$ref": "#/definitions/SanctionsCheckResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/NotifyClient": {
       "post": {
         "summary": "Notify Client",
@@ -744,6 +790,15 @@
       }
     },
     "SanctionsCheckResponse": {
+      "type": "object",
+      "properties": {
+        "sanction_exists": {
+          "type": "integer",
+          "example": 1
+        }
+      }
+    },
+     "SanctionsCheckResponse": {
       "type": "object",
       "properties": {
         "sanction_exists": {
