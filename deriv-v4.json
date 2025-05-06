@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "REST APIs for Automation",
-    "description": "K2-compatible Swagger file for POI Data, Add/Remove Lock, Add Remarks, Enable Proof Of Ownership, Disable Account, Account Balance, Open Positions, Pending Orders, Notify Client, Open/Pending Orders Count, Sanctions Check endpoints, and MT5 Account Balance."
+    "description": "K2-compatible Swagger file for POI Data, Add/Remove Lock, Add Remarks, Enable Proof Of Ownership, Disable Account, Account Balance, Open Positions, Pending Orders, Notify Client, Open/Pending Orders Count, Sanctions Check endpoints, MT5 Account Balance, and TestStringArray."
   },
   "host": "deriv-app.xano.io",
   "basePath": "api:ekyZ8a89",
@@ -493,7 +493,7 @@
         }
       }
     },
-     "/CheckClientAgainst3rdPartyWatchlist": {
+    "/CheckClientAgainst3rdPartyWatchlist": {
       "get": {
         "summary": "Check Client Against 3rd Party Watchlist",
         "description": "Returns whether the client is found in any 3rd party watchlist.",
@@ -575,196 +575,139 @@
           }
         }
       }
+    },
+    "/TestStringArray": {
+      "get": {
+        "summary": "Get String Restrictions Array",
+        "description": "Returns the restrictions array made of strings.",
+        "operationId": "getTestStringArray",
+        "responses": {
+          "200": {
+            "description": "A string array response",
+            "schema": {
+              "$ref": "#/definitions/TestStringArrayResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
     "POIResult": {
       "type": "object",
       "properties": {
-        "type": {
-          "type": "string"
-        },
-        "status": {
-          "type": "string"
-        }
+        "type": { "type": "string" },
+        "status": { "type": "string" }
       }
     },
     "AddRemarksInput": {
       "type": "object",
       "properties": {
-        "platform_code": {
-          "type": "string"
-        },
-        "workflow_id": {
-          "type": "string"
-        },
-        "login_id": {
-          "type": "string"
-        },
-        "remarks_text": {
-          "type": "string"
-        },
-        "created_by": {
-          "type": "string"
-        }
+        "platform_code": { "type": "string" },
+        "workflow_id": { "type": "string" },
+        "login_id": { "type": "string" },
+        "remarks_text": { "type": "string" },
+        "created_by": { "type": "string" }
       }
     },
     "AddRemarksResponse": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer"
-        }
+        "id": { "type": "integer" }
       }
     },
     "DisableAccountInput": {
       "type": "object",
       "properties": {
-        "platform_code": {
-          "type": "string"
-        },
-        "account_id": {
-          "type": "string"
-        },
-        "created_by": {
-          "type": "string"
-        }
+        "platform_code": { "type": "string" },
+        "account_id": { "type": "string" },
+        "created_by": { "type": "string" }
       }
     },
     "EnableProofOfOwnershipInput": {
       "type": "object",
       "properties": {
-        "platform_code": {
-          "type": "string"
-        },
-        "login_id": {
-          "type": "string"
-        },
-        "created_by": {
-          "type": "string"
-        }
+        "platform_code": { "type": "string" },
+        "login_id": { "type": "string" },
+        "created_by": { "type": "string" }
       }
     },
     "RemoveLockInput": {
       "type": "object",
       "properties": {
-        "platform_code": {
-          "type": "string"
-        },
-        "lock_code": {
-          "type": "string"
-        },
-        "context_id": {
-          "type": "string"
-        },
-        "created_by": {
-          "type": "string"
-        }
+        "platform_code": { "type": "string" },
+        "lock_code": { "type": "string" },
+        "context_id": { "type": "string" },
+        "created_by": { "type": "string" }
       }
     },
     "SimpleSuccessResponse": {
       "type": "object",
       "properties": {
-        "success": {
-          "type": "integer"
-        }
+        "success": { "type": "integer" }
       }
     },
     "AccountBalanceResponse": {
       "type": "object",
       "properties": {
-        "balance": {
-          "type": "number"
-        }
+        "balance": { "type": "number" }
       }
     },
     "MT5AccountBalanceResponse": {
       "type": "object",
       "properties": {
-        "balance": {
-          "type": "number",
-          "example": 44.44
-        }
+        "balance": { "type": "number", "example": 44.44 }
       }
     },
     "AddLockInput": {
       "type": "object",
       "properties": {
-        "platform_code": {
-          "type": "string"
-        },
-        "lock_code": {
-          "type": "string"
-        },
-        "context_id": {
-          "type": "string"
-        },
-        "created_by": {
-          "type": "string"
-        }
+        "platform_code": { "type": "string" },
+        "lock_code": { "type": "string" },
+        "context_id": { "type": "string" },
+        "created_by": { "type": "string" }
       }
     },
     "AddLockResponse": {
       "type": "object",
       "properties": {
-        "success_ind": {
-          "type": "integer"
-        }
+        "success_ind": { "type": "integer" }
       }
     },
     "OpenPosition": {
       "type": "object",
       "properties": {
-        "position_id": {
-          "type": "integer"
-        },
-        "login": {
-          "type": "integer"
-        },
-        "symbol": {
-          "type": "string"
-        },
-        "time_create": {
-          "type": "string"
-        },
-        "contract_size": {
-          "type": "string"
-        },
-        "profit": {
-          "type": "string"
-        },
-        "price_open": {
-          "type": "string"
-        },
-        "price_current": {
-          "type": "string"
-        }
+        "position_id": { "type": "integer" },
+        "login": { "type": "integer" },
+        "symbol": { "type": "string" },
+        "time_create": { "type": "string" },
+        "contract_size": { "type": "string" },
+        "profit": { "type": "string" },
+        "price_open": { "type": "string" },
+        "price_current": { "type": "string" }
       }
     },
     "PendingOrder": {
       "type": "object",
       "properties": {
-        "order": {
-          "type": "integer"
-        },
-        "login": {
-          "type": "integer"
-        },
-        "symbol": {
-          "type": "string"
-        },
-        "contract_size": {
-          "type": "string"
-        },
-        "price_order": {
-          "type": "string"
-        },
-        "price_current": {
-          "type": "string"
-        },
-        "time_setup": {
-          "type": "string"
-        }
+        "order": { "type": "integer" },
+        "login": { "type": "integer" },
+        "symbol": { "type": "string" },
+        "contract_size": { "type": "string" },
+        "price_order": { "type": "string" },
+        "price_current": { "type": "string" },
+        "time_setup": { "type": "string" }
       }
     },
     "OpenPositionsResponse": {
@@ -772,9 +715,7 @@
       "properties": {
         "data": {
           "type": "array",
-          "items": {
-            "$ref": "#/definitions/OpenPosition"
-          }
+          "items": { "$ref": "#/definitions/OpenPosition" }
         }
       }
     },
@@ -783,13 +724,11 @@
       "properties": {
         "data": {
           "type": "array",
-          "items": {
-            "$ref": "#/definitions/PendingOrder"
-          }
+          "items": { "$ref": "#/definitions/PendingOrder" }
         }
       }
     },
-     "SanctionsCheckResponse": {
+    "SanctionsCheckResponse": {
       "type": "object",
       "properties": {
         "sanction_exists": {
@@ -801,37 +740,34 @@
     "NotifyClientInput": {
       "type": "object",
       "properties": {
-        "platform_code": {
-          "type": "string"
-        },
-        "channel_code": {
-          "type": "string"
-        },
-        "login_id": {
-          "type": "string"
-        },
-        "notification_text": {
-          "type": "string"
-        },
-        "created_by": {
-          "type": "string"
-        }
+        "platform_code": { "type": "string" },
+        "channel_code": { "type": "string" },
+        "login_id": { "type": "string" },
+        "notification_text": { "type": "string" },
+        "created_by": { "type": "string" }
       }
     },
     "NotifyClientResponse": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer"
-        }
+        "id": { "type": "integer" }
       }
     },
     "CountResponse": {
       "type": "object",
       "properties": {
-        "count": {
-          "type": "integer",
-          "example": 42
+        "count": { "type": "integer", "example": 42 }
+      }
+    },
+    "TestStringArrayResponse": {
+      "type": "object",
+      "properties": {
+        "restrictions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "apple"
+          }
         }
       }
     }
