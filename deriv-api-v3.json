@@ -1,0 +1,634 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST APIs for Automation",
+    "description": "Merged Swagger file: Endpoints and requests/responses from V2 APIs, formated per File 1 standards."
+  },
+  "host": "deriv-app.xano.io",
+  "basePath": "api:ekyZ8a89",
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/AddLockV2": {
+      "post": {
+        "summary": "Add Lock V2",
+        "description": "The purpose of this API is to add a Lock of a specific type to a specific User ID. Covers MT5, Cashier and Unwelcome Login Locks.",
+        "operationId": "addLockV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Lock input",
+            "required": true,
+            "schema": {"$ref": "#/definitions/AddLockV2Input"}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful addition of lock",
+            "schema": {"$ref": "#/definitions/AddLockV2Response"}
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "/AddRemarksV2": {
+      "post": {
+        "summary": "Add Remarks V2",
+        "description": "The purpose of this API is to add a new remark text for a specific user.",
+        "operationId": "addRemarksV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Remarks input",
+            "required": true,
+            "schema": {"$ref": "#/definitions/AddRemarksV2Input"}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful addition of remarks",
+            "schema": {"$ref": "#/definitions/AddRemarksV2Response"}
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "/CheckClientAgainst3rdPartyWatchlistV2": {
+      "get": {
+        "summary": "Check Client Against 3rd Party Watchlist V2",
+        "description": "The purpose of this API is to check if the specific User ID exists against an external 3rd party provided watchlist.",
+        "operationId": "checkClientAgainst3rdPartyWatchlistV2",
+        "parameters": [
+          {
+            "name": "brand_code",
+            "in": "query",
+            "description": "Denotes the platform to direct the request to. Values include: V1 or V2",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "The top level User ID to perform the Sanctions List check against.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "created_by",
+            "in": "query",
+            "description": "The internal user or system user for audit purposes.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sanctions list check result",
+            "schema": {"$ref": "#/definitions/SanctionsCheckV2Response"}
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "/CheckClientAgainstSanctionsListV2": {
+      "get": {
+        "summary": "Check Client Against Sanctions List V2",
+        "description": "The purpose of this API is to check if the specific User ID exists in the internal Sanctions List.",
+        "operationId": "checkClientAgainstSanctionsListV2",
+        "parameters": [
+          {
+            "name": "brand_code",
+            "in": "query",
+            "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "The top level User ID to perform the Sanctions List check against.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "created_by",
+            "in": "query",
+            "description": "The internal user or system user for audit purposes.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sanctions list check result",
+            "schema": {"$ref": "#/definitions/SanctionsCheckV2Response"}
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "/DisableAccountV2": {
+      "post": {
+        "summary": "Disable Account V2",
+        "description": "The purpose of this API is to Disable all Accounts for a specific User ID, to prevent access.",
+        "operationId": "disableAccountV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Disable account input",
+            "required": true,
+            "schema": {"$ref": "#/definitions/DisableAccountV2Input"}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Disable account result",
+            "schema": {"$ref": "#/definitions/SimpleSuccessResponse"}
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "/EnableProofOfOwnershipV2": {
+      "post": {
+        "summary": "Enable Proof Of Ownership V2",
+        "description": "The purpose of this API is to enable proof of ownership (POO) for a specific User ID.",
+        "operationId": "enableProofOfOwnershipV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Enable Proof Of Ownership input",
+            "required": true,
+            "schema": {"$ref": "#/definitions/EnableProofOfOwnershipV2Input"}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Enable Proof Of Ownership result",
+            "schema": {"$ref": "#/definitions/SimpleSuccessResponse"}
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "/GetAccountBalanceV2": {
+      "get": {
+        "summary": "Get Account Balance V2",
+        "description": "The purpose of this API is to retrieve the balance across all accounts held for a specific User ID.",
+        "operationId": "getAccountBalanceV2",
+        "parameters": [
+          {
+            "name": "brand_code",
+            "in": "query",
+            "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "The top level User ID to identify all accounts for which a consolidated balance is required.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "created_by",
+            "in": "query",
+            "description": "The internal user or system user for audit purposes.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account balance response",
+            "schema": {"$ref": "#/definitions/AccountBalanceV2Response"}
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "/GetMT5AccountBalanceV2": {
+      "get": {
+        "summary": "Get MT5 Account Balance V2",
+        "description": "The purpose of this API is to retrieve the balance across all MT5 accounts held for a specific User ID.",
+        "operationId": "getMT5AccountBalanceV2",
+        "parameters": [
+          {
+            "name": "brand_code",
+            "in": "query",
+            "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "The top level User ID to identify all MT5 accounts for which a consolidated balance is required.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "created_by",
+            "in": "query",
+            "description": "The internal user or system user for audit purposes.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MT5 account balance response",
+            "schema": {"$ref": "#/definitions/MT5AccountBalanceV2Response"}
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "/GetPOIDataV2": {
+      "get": {
+        "summary": "Get POI Data V2",
+        "description": "The purpose of this API is to retrieve the POI data for a specific User ID.",
+        "operationId": "getPOIDataV2",
+        "parameters": [
+          {
+            "name": "brand_code",
+            "in": "query",
+            "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "The top level User ID to identify who to get the POI data for.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "created_by",
+            "in": "query",
+            "description": "The internal user or system user for audit purposes.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "POI Data array",
+            "schema": {
+              "type": "array",
+              "items": {"$ref": "#/definitions/POIResult"}
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "/NotifyClientV2": {
+      "post": {
+        "summary": "Notify Client V2",
+        "description": "The purpose of this API is to send Notifications to a specific client top level User ID, via a specific channel. ie Email, Intercom, etc",
+        "operationId": "notifyClientV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Notification payload",
+            "required": true,
+            "schema": {"$ref": "#/definitions/NotifyClientV2Input"}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Notification created",
+            "schema": {"$ref": "#/definitions/NotifyClientV2Response"}
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "/RemoveLockV2": {
+      "post": {
+        "summary": "Remove Lock V2",
+        "description": "The purpose of this API is to remove a Lock of a specific type to a specific User ID. Covers MT5, Cashier and Unwelcome Login Locks.",
+        "operationId": "removeLockV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Lock removal input",
+            "required": true,
+            "schema": {"$ref": "#/definitions/RemoveLockV2Input"}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lock removal result",
+            "schema": {"$ref": "#/definitions/SimpleSuccessResponse"}
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "/open-positions/countV2": {
+      "get": {
+        "summary": "Get Open Positions Count V2",
+        "description": "Count of open positions.",
+        "operationId": "getOpenPositionsCountV2",
+        "parameters": [
+          {
+            "name": "brand_code",
+            "in": "query",
+            "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Client account id",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Open positions count",
+            "schema": {"$ref": "#/definitions/CountV2Response"}
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "/open-positionsV2": {
+      "get": {
+        "summary": "Get Open Positions V2",
+        "description": "Get MT5 open positions.",
+        "operationId": "getOpenPositionsV2",
+        "parameters": [
+          {
+            "name": "brand_code",
+            "in": "query",
+            "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Top level User ID.",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Open positions response",
+            "schema": {"$ref": "#/definitions/OpenPositionsResponse"}
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "/pending-ordersV2": {
+      "get": {
+        "summary": "Get Pending Orders V2",
+        "description": "Get pending orders.",
+        "operationId": "getPendingOrdersV2",
+        "parameters": [
+          {
+            "name": "brand_code",
+            "in": "query",
+            "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Top Level User ID.",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pending orders response",
+            "schema": {"$ref": "#/definitions/PendingOrdersResponse"}
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AddLockV2Input": {
+      "type": "object",
+      "properties": {
+        "brand_code": {"type": "string"},
+        "lock_code": {"type": "string"},
+        "user_id": {"type": "string"},
+        "created_by": {"type": "string"}
+      },
+      "required": ["lock_code", "user_id", "created_by"]
+    },
+    "AddLockV2Response": {
+      "type": "object",
+      "description": "Success indicator",
+      "properties": {
+        "success_ind": {"type": "integer"}
+      }
+    },
+    "AddRemarksV2Input": {
+      "type": "object",
+      "properties": {
+        "brand_code": {"type": "string"},
+        "workflow_id": {"type": "string"},
+        "user_id": {"type": "string"},
+        "remarks_text": {"type": "string"},
+        "created_by": {"type": "string"}
+      },
+      "required": ["brand_code", "workflow_id", "user_id", "remarks_text", "created_by"]
+    },
+    "AddRemarksV2Response": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "integer"}
+      }
+    },
+    "RemoveLockV2Input": {
+      "type": "object",
+      "properties": {
+        "brand_code": {"type": "string"},
+        "lock_code": {"type": "string"},
+        "user_id": {"type": "string"},
+        "created_by": {"type": "string"}
+      },
+      "required": ["lock_code", "user_id", "created_by"]
+    },
+    "DisableAccountV2Input": {
+      "type": "object",
+      "properties": {
+        "brand_code": {"type": "string"},
+        "user_id": {"type": "string"},
+        "created_by": {"type": "string"}
+      },
+      "required": ["brand_code", "user_id", "created_by"]
+    },
+    "EnableProofOfOwnershipV2Input": {
+      "type": "object",
+      "properties": {
+        "brand_code": {"type": "string"},
+        "user_id": {"type": "string"},
+        "created_by": {"type": "string"}
+      },
+      "required": ["brand_code", "user_id", "created_by"]
+    },
+    "AccountBalanceV2Response": {
+      "type": "object",
+      "properties": {
+        "balance": {"type": "number"}
+      }
+    },
+    "MT5AccountBalanceV2Response": {
+      "type": "object",
+      "properties": {
+        "balance": {"type": "number"}
+      }
+    },
+    "SanctionsCheckV2Response": {
+      "type": "object",
+      "properties": {
+        "sanction_exists": {"type": "integer", "example": 1}
+      }
+    },
+    "NotifyClientV2Input": {
+      "type": "object",
+      "properties": {
+        "brand_code": {"type": "string"},
+        "channel_code": {"type": "string"},
+        "user_id": {"type": "string"},
+        "notification_text": {"type": "string"},
+        "created_by": {"type": "string"}
+      },
+      "required": ["brand_code", "channel_code", "user_id", "notification_text", "created_by"]
+    },
+    "NotifyClientV2Response": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "integer"}
+      }
+    },
+    "CountV2Response": {
+      "type": "object",
+      "properties": {
+        "count": {"type": "integer", "example": 42}
+      }
+    },
+    "POIResult": {
+      "type": "object",
+      "properties": {
+        "type": {"type": "string"},
+        "status": {"type": "string"}
+      }
+    },
+    "OpenPositionsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/OpenPosition"}
+        }
+      }
+    },
+    "OpenPosition": {
+      "type": "object",
+      "properties": {
+        "position_id": {"type": "integer"},
+        "login": {"type": "integer"},
+        "symbol": {"type": "string"},
+        "time_create": {"type": "string"},
+        "contract_size": {"type": "string"},
+        "profit": {"type": "string"},
+        "price_open": {"type": "string"},
+        "price_current": {"type": "string"}
+      }
+    },
+    "PendingOrdersResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/PendingOrder"}
+        }
+      }
+    },
+    "PendingOrder": {
+      "type": "object",
+      "properties": {
+        "order": {"type": "integer"},
+        "login": {"type": "integer"},
+        "symbol": {"type": "string"},
+        "contract_size": {"type": "string"},
+        "price_order": {"type": "string"},
+        "price_current": {"type": "string"},
+        "time_setup": {"type": "string"}
+      }
+    },
+    "SimpleSuccessResponse": {
+      "type": "object",
+      "properties": {
+        "success": {"type": "integer"}
+      }
+    }
+  }
+}
