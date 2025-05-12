@@ -1,633 +1,1268 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
-    "version": "1.0.0",
-    "title": "REST APIs for Automation",
-    "description": "Merged Swagger file: Endpoints and requests/responses from V2 APIs, formated per File 1 standards."
+    "title": "Process Automation V2",
+    "description": "Contains APIs used within the Process Automation Cell, to support Nintex K2 business processes (V2).",
+    "version": "0.0.1"
   },
-  "host": "deriv-app.xano.io",
-  "basePath": "api:ekyZ8a89",
-  "schemes": ["https"],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "servers": [
+    {
+      "url": "https://deriv-app.xano.io/api:e71ULXBs"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+
+    }
+  },
   "paths": {
     "/AddLockV2": {
       "post": {
-        "summary": "Add Lock V2",
-        "description": "The purpose of this API is to add a Lock of a specific type to a specific User ID. Covers MT5, Cashier and Unwelcome Login Locks.",
-        "operationId": "addLockV2",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Lock input",
-            "required": true,
-            "schema": {"$ref": "#/definitions/AddLockV2Input"}
-          }
+        "summary": "The purpose of this API is to add a Lock of a specific type to a specific User ID. Covers MT5, Cashier and Unwelcome Login Locks.",
+        "description": "The purpose of this API is to add a Lock of a specific type to a specific User ID. Covers MT5, Cashier and Unwelcome Login Locks.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "AddLockV2"
         ],
+        "security": [],
+        "parameters": [],
         "responses": {
           "200": {
-            "description": "Successful addition of lock",
-            "schema": {"$ref": "#/definitions/AddLockV2Response"}
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+
+                  }
+                }
+              }
+            }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_code": {
+                    "type": "string",
+                    "description": "Denotes that the brand to direct the request to. Values include: V1 or V2"
+                  },
+                  "lock_code": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "The top level User ID against which the lock will be added."
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "description": "The internal user or system user for audit purposes."
+                  }
+                },
+                "required": [
+                  "lock_code",
+                  "user_id",
+                  "created_by"
+                ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_code": {
+                    "type": "string",
+                    "description": "Denotes that the brand to direct the request to. Values include: V1 or V2"
+                  },
+                  "lock_code": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "The top level User ID against which the lock will be added."
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "description": "The internal user or system user for audit purposes."
+                  }
+                },
+                "required": [
+                  "lock_code",
+                  "user_id",
+                  "created_by"
+                ]
+              }
+            }
           }
         }
       }
     },
     "/AddRemarksV2": {
       "post": {
-        "summary": "Add Remarks V2",
-        "description": "The purpose of this API is to add a new remark text for a specific user.",
-        "operationId": "addRemarksV2",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Remarks input",
-            "required": true,
-            "schema": {"$ref": "#/definitions/AddRemarksV2Input"}
-          }
+        "summary": "The purpose of this API is to add a new remark text for a specific user.",
+        "description": "The purpose of this API is to add a new remark text for a specific user.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "AddRemarksV2"
         ],
+        "security": [],
+        "parameters": [],
         "responses": {
           "200": {
-            "description": "Successful addition of remarks",
-            "schema": {"$ref": "#/definitions/AddRemarksV2Response"}
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+
+                  }
+                }
+              }
+            }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_code": {
+                    "type": "string",
+                    "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+                  },
+                  "workflow_id": {
+                    "type": "string",
+                    "description": "An alpha-numeric ID to relate the remark to a specific instance of a workflow."
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "The top level User ID against which the remarks will be added."
+                  },
+                  "remarks_text": {
+                    "type": "string",
+                    "description": "The remarks text to be stored."
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "description": "The internal user or system user for audit purposes."
+                  }
+                },
+                "required": [
+                  "brand_code",
+                  "workflow_id",
+                  "user_id",
+                  "remarks_text",
+                  "created_by"
+                ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_code": {
+                    "type": "string",
+                    "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+                  },
+                  "workflow_id": {
+                    "type": "string",
+                    "description": "An alpha-numeric ID to relate the remark to a specific instance of a workflow."
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "The top level User ID against which the remarks will be added."
+                  },
+                  "remarks_text": {
+                    "type": "string",
+                    "description": "The remarks text to be stored."
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "description": "The internal user or system user for audit purposes."
+                  }
+                },
+                "required": [
+                  "brand_code",
+                  "workflow_id",
+                  "user_id",
+                  "remarks_text",
+                  "created_by"
+                ]
+              }
+            }
           }
         }
       }
     },
     "/CheckClientAgainst3rdPartyWatchlistV2": {
       "get": {
-        "summary": "Check Client Against 3rd Party Watchlist V2",
-        "description": "The purpose of this API is to check if the specific User ID exists against an external 3rd party provided watchlist.",
-        "operationId": "checkClientAgainst3rdPartyWatchlistV2",
+        "summary": "The purpose of this API is to check if the specific User ID exists against an external 3rd party provided watchlist.",
+        "description": "The purpose of this API is to check if the specific User ID exists against an external 3rd party provided watchlist.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "CheckClientAgainst3rdPartyWatchlistV2"
+        ],
+        "security": [],
         "parameters": [
           {
             "name": "brand_code",
             "in": "query",
-            "description": "Denotes the platform to direct the request to. Values include: V1 or V2",
-            "type": "string",
-            "required": true
+            "description": "Denotes that the platform to direct the request to. Values include: V1 or V2",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "user_id",
             "in": "query",
             "description": "The top level User ID to perform the Sanctions List check against.",
-            "type": "string",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "created_by",
             "in": "query",
             "description": "The internal user or system user for audit purposes.",
-            "type": "string",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Sanctions list check result",
-            "schema": {"$ref": "#/definitions/SanctionsCheckV2Response"}
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+
+                  }
+                }
+              }
+            }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
           }
         }
       }
     },
     "/CheckClientAgainstSanctionsListV2": {
       "get": {
-        "summary": "Check Client Against Sanctions List V2",
-        "description": "The purpose of this API is to check if the specific User ID exists in the internal Sanctions List.",
-        "operationId": "checkClientAgainstSanctionsListV2",
+        "summary": "The purpose of this API is to check if the specific User ID exists in the internal Sanctions List.",
+        "description": "The purpose of this API is to check if the specific User ID exists in the internal Sanctions List.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "CheckClientAgainstSanctionsListV2"
+        ],
+        "security": [],
         "parameters": [
           {
             "name": "brand_code",
             "in": "query",
             "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
-            "type": "string",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "user_id",
             "in": "query",
             "description": "The top level User ID to perform the Sanctions List check against.",
-            "type": "string",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "created_by",
             "in": "query",
             "description": "The internal user or system user for audit purposes.",
-            "type": "string",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Sanctions list check result",
-            "schema": {"$ref": "#/definitions/SanctionsCheckV2Response"}
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+
+                  }
+                }
+              }
+            }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
           }
         }
       }
     },
     "/DisableAccountV2": {
       "post": {
-        "summary": "Disable Account V2",
-        "description": "The purpose of this API is to Disable all Accounts for a specific User ID, to prevent access.",
-        "operationId": "disableAccountV2",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Disable account input",
-            "required": true,
-            "schema": {"$ref": "#/definitions/DisableAccountV2Input"}
-          }
+        "summary": "The purpose of this API is to Disable all Accounts for a specific User ID, to prevent access.",
+        "description": "The purpose of this API is to Disable all Accounts for a specific User ID, to prevent access.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "DisableAccountV2"
         ],
+        "security": [],
+        "parameters": [],
         "responses": {
           "200": {
-            "description": "Disable account result",
-            "schema": {"$ref": "#/definitions/SimpleSuccessResponse"}
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+
+                  }
+                }
+              }
+            }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_code": {
+                    "type": "string",
+                    "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "The top level User ID to identify all accounts to be disabled"
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "description": "The internal user or system user for audit purposes."
+                  }
+                },
+                "required": [
+                  "brand_code",
+                  "user_id",
+                  "created_by"
+                ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_code": {
+                    "type": "string",
+                    "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "The top level User ID to identify all accounts to be disabled"
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "description": "The internal user or system user for audit purposes."
+                  }
+                },
+                "required": [
+                  "brand_code",
+                  "user_id",
+                  "created_by"
+                ]
+              }
+            }
           }
         }
       }
     },
     "/EnableProofOfOwnershipV2": {
       "post": {
-        "summary": "Enable Proof Of Ownership V2",
-        "description": "The purpose of this API is to enable proof of ownership (POO) for a specific User ID.",
-        "operationId": "enableProofOfOwnershipV2",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Enable Proof Of Ownership input",
-            "required": true,
-            "schema": {"$ref": "#/definitions/EnableProofOfOwnershipV2Input"}
-          }
+        "summary": "The purpose of this API is to enable proof of ownership (POO) for a specific User ID.",
+        "description": "The purpose of this API is to enable proof of ownership (POO) for a specific User ID.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "EnableProofOfOwnershipV2"
         ],
+        "security": [],
+        "parameters": [],
         "responses": {
           "200": {
-            "description": "Enable Proof Of Ownership result",
-            "schema": {"$ref": "#/definitions/SimpleSuccessResponse"}
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+
+                  }
+                }
+              }
+            }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_code": {
+                    "type": "string",
+                    "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "The top level User ID to against which Proof of Ownership is to be added."
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "description": "The internal user or system user for audit purposes."
+                  }
+                },
+                "required": [
+                  "brand_code",
+                  "user_id",
+                  "created_by"
+                ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_code": {
+                    "type": "string",
+                    "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "The top level User ID to against which Proof of Ownership is to be added."
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "description": "The internal user or system user for audit purposes."
+                  }
+                },
+                "required": [
+                  "brand_code",
+                  "user_id",
+                  "created_by"
+                ]
+              }
+            }
           }
         }
       }
     },
     "/GetAccountBalanceV2": {
       "get": {
-        "summary": "Get Account Balance V2",
-        "description": "The purpose of this API is to retrieve the balance across all accounts held for a specific User ID.",
-        "operationId": "getAccountBalanceV2",
+        "summary": "The purpose of this API is to retrieve the balance across all accounts held for a specific User ID.",
+        "description": "The purpose of this API is to retrieve the balance across all accounts held for a specific User ID.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "GetAccountBalanceV2"
+        ],
+        "security": [],
         "parameters": [
           {
             "name": "brand_code",
             "in": "query",
             "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
-            "type": "string",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "user_id",
             "in": "query",
             "description": "The top level User ID to identify all accounts for which a consolidated balance is required.",
-            "type": "string",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "created_by",
             "in": "query",
             "description": "The internal user or system user for audit purposes.",
-            "type": "string",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Account balance response",
-            "schema": {"$ref": "#/definitions/AccountBalanceV2Response"}
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+
+                  }
+                }
+              }
+            }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
           }
         }
       }
     },
     "/GetMT5AccountBalanceV2": {
       "get": {
-        "summary": "Get MT5 Account Balance V2",
-        "description": "The purpose of this API is to retrieve the balance across all MT5 accounts held for a specific User ID.",
-        "operationId": "getMT5AccountBalanceV2",
+        "summary": "The purpose of this API is to retrieve the balance across all MT5 accounts held for a specific User ID.",
+        "description": "The purpose of this API is to retrieve the balance across all MT5 accounts held for a specific User ID.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "GetMT5AccountBalanceV2"
+        ],
+        "security": [],
         "parameters": [
           {
             "name": "brand_code",
             "in": "query",
             "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
-            "type": "string",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "user_id",
             "in": "query",
             "description": "The top level User ID to identify all MT5 accounts for which a consolidated balance is required.",
-            "type": "string",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "created_by",
             "in": "query",
             "description": "The internal user or system user for audit purposes.",
-            "type": "string",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "MT5 account balance response",
-            "schema": {"$ref": "#/definitions/MT5AccountBalanceV2Response"}
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+
+                  }
+                }
+              }
+            }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
           }
         }
       }
     },
     "/GetPOIDataV2": {
       "get": {
-        "summary": "Get POI Data V2",
-        "description": "The purpose of this API is to retrieve the POI data for a specific User ID.",
-        "operationId": "getPOIDataV2",
+        "summary": "The purpose of this API is to retrieve the POI data for a specific User ID.",
+        "description": "The purpose of this API is to retrieve the POI data for a specific User ID.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "GetPOIDataV2"
+        ],
+        "security": [],
         "parameters": [
           {
             "name": "brand_code",
             "in": "query",
             "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
-            "type": "string",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "user_id",
             "in": "query",
             "description": "The top level User ID to identify who to get the POI data for.",
-            "type": "string",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "created_by",
             "in": "query",
             "description": "The internal user or system user for audit purposes.",
-            "type": "string",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "POI Data array",
-            "schema": {
-              "type": "array",
-              "items": {"$ref": "#/definitions/POIResult"}
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+
+                  }
+                }
+              }
             }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/GetSwagger2docsV2": {
+      "get": {
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "GetSwagger2docsV2"
+        ],
+        "security": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
           }
         }
       }
     },
     "/NotifyClientV2": {
       "post": {
-        "summary": "Notify Client V2",
-        "description": "The purpose of this API is to send Notifications to a specific client top level User ID, via a specific channel. ie Email, Intercom, etc",
-        "operationId": "notifyClientV2",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Notification payload",
-            "required": true,
-            "schema": {"$ref": "#/definitions/NotifyClientV2Input"}
-          }
+        "summary": "The purpose of this API is to send Notifications to a specific client top level User ID, via a specific channel. ie Email, Intercom, etc",
+        "description": "The purpose of this API is to send Notifications to a specific client top level User ID, via a specific channel. ie Email, Intercom, etc\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "NotifyClientV2"
         ],
+        "security": [],
+        "parameters": [],
         "responses": {
           "200": {
-            "description": "Notification created",
-            "schema": {"$ref": "#/definitions/NotifyClientV2Response"}
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": ""
+                    }
+                  }
+                }
+              }
+            }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_code": {
+                    "type": "string",
+                    "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+                  },
+                  "channel_code": {
+                    "type": "string",
+                    "description": "Denotes that the channel to notify the client via. Values include: EMAIL, INTERCOM"
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "The top level User ID against which the remarks will be added."
+                  },
+                  "notification_text": {
+                    "type": "string",
+                    "description": "The notifications text to be stored."
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "description": "The internal user or system user for audit purposes."
+                  }
+                },
+                "required": [
+                  "brand_code",
+                  "channel_code",
+                  "user_id",
+                  "notification_text",
+                  "created_by"
+                ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_code": {
+                    "type": "string",
+                    "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+                  },
+                  "channel_code": {
+                    "type": "string",
+                    "description": "Denotes that the channel to notify the client via. Values include: EMAIL, INTERCOM"
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "The top level User ID against which the remarks will be added."
+                  },
+                  "notification_text": {
+                    "type": "string",
+                    "description": "The notifications text to be stored."
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "description": "The internal user or system user for audit purposes."
+                  }
+                },
+                "required": [
+                  "brand_code",
+                  "channel_code",
+                  "user_id",
+                  "notification_text",
+                  "created_by"
+                ]
+              }
+            }
           }
         }
       }
     },
     "/RemoveLockV2": {
       "post": {
-        "summary": "Remove Lock V2",
-        "description": "The purpose of this API is to remove a Lock of a specific type to a specific User ID. Covers MT5, Cashier and Unwelcome Login Locks.",
-        "operationId": "removeLockV2",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Lock removal input",
-            "required": true,
-            "schema": {"$ref": "#/definitions/RemoveLockV2Input"}
-          }
+        "summary": "The purpose of this API is to remove a Lock of a specific type to a specific User ID. Covers MT5, Cashier and Unwelcome Login Locks.",
+        "description": "The purpose of this API is to remove a Lock of a specific type to a specific User ID. Covers MT5, Cashier and Unwelcome Login Locks.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "RemoveLockV2"
         ],
+        "security": [],
+        "parameters": [],
         "responses": {
           "200": {
-            "description": "Lock removal result",
-            "schema": {"$ref": "#/definitions/SimpleSuccessResponse"}
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+
+                  }
+                }
+              }
+            }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_code": {
+                    "type": "string",
+                    "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+                  },
+                  "lock_code": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "The ID against which the lock will be added. For the MT5 lock, this is the MT5_LOGIN_ID. For the Cashier lock, this is the ACCOUNT_ID."
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "description": "The internal user or system user for audit purposes."
+                  }
+                },
+                "required": [
+                  "lock_code",
+                  "user_id",
+                  "created_by"
+                ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_code": {
+                    "type": "string",
+                    "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+                  },
+                  "lock_code": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "The ID against which the lock will be added. For the MT5 lock, this is the MT5_LOGIN_ID. For the Cashier lock, this is the ACCOUNT_ID."
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "description": "The internal user or system user for audit purposes."
+                  }
+                },
+                "required": [
+                  "lock_code",
+                  "user_id",
+                  "created_by"
+                ]
+              }
+            }
           }
         }
       }
     },
     "/open-positions/countV2": {
       "get": {
-        "summary": "Get Open Positions Count V2",
-        "description": "Count of open positions.",
-        "operationId": "getOpenPositionsCountV2",
+        "summary": "Count of open positions",
+        "description": "Count of open positions\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "open-positions"
+        ],
+        "security": [],
         "parameters": [
           {
             "name": "brand_code",
             "in": "query",
             "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
-            "type": "string",
-            "required": false
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "user_id",
             "in": "query",
             "description": "Client account id",
-            "type": "string",
-            "required": false
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Open positions count",
-            "schema": {"$ref": "#/definitions/CountV2Response"}
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+
+                  }
+                }
+              }
+            }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
           }
         }
       }
     },
     "/open-positionsV2": {
       "get": {
-        "summary": "Get Open Positions V2",
-        "description": "Get MT5 open positions.",
-        "operationId": "getOpenPositionsV2",
+        "summary": "Get MT5 open positions",
+        "description": "Get MT5 open positions\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "open-positionsV2"
+        ],
+        "security": [],
         "parameters": [
           {
             "name": "brand_code",
             "in": "query",
             "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
-            "type": "string",
-            "required": false
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "user_id",
             "in": "query",
             "description": "Top level User ID.",
-            "type": "string",
-            "required": false
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Open positions response",
-            "schema": {"$ref": "#/definitions/OpenPositionsResponse"}
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": ""
+                }
+              }
+            }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
           }
         }
       }
     },
     "/pending-ordersV2": {
       "get": {
-        "summary": "Get Pending Orders V2",
-        "description": "Get pending orders.",
-        "operationId": "getPendingOrdersV2",
+        "summary": "Get pending orders",
+        "description": "Get pending orders\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "operationId": "",
+        "tags": [
+          "pending-ordersV2"
+        ],
+        "security": [],
         "parameters": [
           {
             "name": "brand_code",
             "in": "query",
             "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
-            "type": "string",
-            "required": false
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "user_id",
             "in": "query",
             "description": "Top Level User ID.",
-            "type": "string",
-            "required": false
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Pending orders response",
-            "schema": {"$ref": "#/definitions/PendingOrdersResponse"}
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+
+                  }
+                }
+              }
+            }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {"type": "object", "properties": {"message": {"type": "string"}}}
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": {
+            "description": "Rate Limited. Too many requests."
+          },
+          "500": {
+            "description": "Unexpected error"
           }
         }
-      }
-    }
-  },
-  "definitions": {
-    "AddLockV2Input": {
-      "type": "object",
-      "properties": {
-        "brand_code": {"type": "string"},
-        "lock_code": {"type": "string"},
-        "user_id": {"type": "string"},
-        "created_by": {"type": "string"}
-      },
-      "required": ["lock_code", "user_id", "created_by"]
-    },
-    "AddLockV2Response": {
-      "type": "object",
-      "description": "Success indicator",
-      "properties": {
-        "success_ind": {"type": "integer"}
-      }
-    },
-    "AddRemarksV2Input": {
-      "type": "object",
-      "properties": {
-        "brand_code": {"type": "string"},
-        "workflow_id": {"type": "string"},
-        "user_id": {"type": "string"},
-        "remarks_text": {"type": "string"},
-        "created_by": {"type": "string"}
-      },
-      "required": ["brand_code", "workflow_id", "user_id", "remarks_text", "created_by"]
-    },
-    "AddRemarksV2Response": {
-      "type": "object",
-      "properties": {
-        "id": {"type": "integer"}
-      }
-    },
-    "RemoveLockV2Input": {
-      "type": "object",
-      "properties": {
-        "brand_code": {"type": "string"},
-        "lock_code": {"type": "string"},
-        "user_id": {"type": "string"},
-        "created_by": {"type": "string"}
-      },
-      "required": ["lock_code", "user_id", "created_by"]
-    },
-    "DisableAccountV2Input": {
-      "type": "object",
-      "properties": {
-        "brand_code": {"type": "string"},
-        "user_id": {"type": "string"},
-        "created_by": {"type": "string"}
-      },
-      "required": ["brand_code", "user_id", "created_by"]
-    },
-    "EnableProofOfOwnershipV2Input": {
-      "type": "object",
-      "properties": {
-        "brand_code": {"type": "string"},
-        "user_id": {"type": "string"},
-        "created_by": {"type": "string"}
-      },
-      "required": ["brand_code", "user_id", "created_by"]
-    },
-    "AccountBalanceV2Response": {
-      "type": "object",
-      "properties": {
-        "balance": {"type": "number"}
-      }
-    },
-    "MT5AccountBalanceV2Response": {
-      "type": "object",
-      "properties": {
-        "balance": {"type": "number"}
-      }
-    },
-    "SanctionsCheckV2Response": {
-      "type": "object",
-      "properties": {
-        "sanction_exists": {"type": "integer", "example": 1}
-      }
-    },
-    "NotifyClientV2Input": {
-      "type": "object",
-      "properties": {
-        "brand_code": {"type": "string"},
-        "channel_code": {"type": "string"},
-        "user_id": {"type": "string"},
-        "notification_text": {"type": "string"},
-        "created_by": {"type": "string"}
-      },
-      "required": ["brand_code", "channel_code", "user_id", "notification_text", "created_by"]
-    },
-    "NotifyClientV2Response": {
-      "type": "object",
-      "properties": {
-        "id": {"type": "integer"}
-      }
-    },
-    "CountV2Response": {
-      "type": "object",
-      "properties": {
-        "count": {"type": "integer", "example": 42}
-      }
-    },
-    "POIResult": {
-      "type": "object",
-      "properties": {
-        "type": {"type": "string"},
-        "status": {"type": "string"}
-      }
-    },
-    "OpenPositionsResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {"$ref": "#/definitions/OpenPosition"}
-        }
-      }
-    },
-    "OpenPosition": {
-      "type": "object",
-      "properties": {
-        "position_id": {"type": "integer"},
-        "login": {"type": "integer"},
-        "symbol": {"type": "string"},
-        "time_create": {"type": "string"},
-        "contract_size": {"type": "string"},
-        "profit": {"type": "string"},
-        "price_open": {"type": "string"},
-        "price_current": {"type": "string"}
-      }
-    },
-    "PendingOrdersResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {"$ref": "#/definitions/PendingOrder"}
-        }
-      }
-    },
-    "PendingOrder": {
-      "type": "object",
-      "properties": {
-        "order": {"type": "integer"},
-        "login": {"type": "integer"},
-        "symbol": {"type": "string"},
-        "contract_size": {"type": "string"},
-        "price_order": {"type": "string"},
-        "price_current": {"type": "string"},
-        "time_setup": {"type": "string"}
-      }
-    },
-    "SimpleSuccessResponse": {
-      "type": "object",
-      "properties": {
-        "success": {"type": "integer"}
       }
     }
   }
