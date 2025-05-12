@@ -6,7 +6,7 @@
     "description": "Swagger file containing only the V2 endpoints for Process Automation."
   },
   "host": "deriv-app.xano.io",
-  "basePath": "api:e71ULXBs",
+  "basePath": "api:ekyZ8a89",
   "schemes": [
     "https"
   ],
@@ -40,7 +40,7 @@
           "200": {
             "description": "Success!",
             "schema": {
-               "$ref": "#/definitions/AddLockResponse"
+               "$ref": "#/definitions/SimpleSuccessResponse"
             }
           },
            "400": {
@@ -588,7 +588,9 @@
         "responses": {
           "200": {
             "description": "Success!",
-            "schema": {}
+            "schema": {
+               "$ref": "#/definitions/SimpleSuccessResponse"
+            }
           },
           "400": {
             "description": "Input Error. Check the request payload for issues."
@@ -820,6 +822,12 @@
         "created_by"
       ]
     },
+    "SimpleSuccessResponse": {
+      "type": "object",
+      "properties": {
+        "success": { "type": "integer" }
+      }
+    },
     "AddLockV2Input": {
       "type": "object",
       "properties": {
@@ -833,12 +841,6 @@
         "user_id",
         "created_by"
       ]
-    },
-    "AddLockResponse": {
-      "type": "object",
-      "properties": {
-        "success_ind": { "type": "integer" }
-      }
     },
      "NotifyClientV2Input": {
       "type": "object",
