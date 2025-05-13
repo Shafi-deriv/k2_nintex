@@ -812,7 +812,7 @@
     "AddLockResponse": {
       "type": "object",
       "properties": {
-        "success_ind": { "type": "integer" }
+        "success": { "type": "integer" }
       }
     },
     "AccountBalanceResponse": {
