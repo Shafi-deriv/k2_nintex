@@ -6,7 +6,7 @@
     "description": "Swagger file containing only the V2 endpoints for Process Automation."
   },
   "host": "deriv-app.xano.io",
-  "basePath": "api:ekyZ8a89",
+  "basePath": "api:e71ULXBs",
   "schemes": [
     "https"
   ],
