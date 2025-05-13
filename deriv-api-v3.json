@@ -38,28 +38,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Success!",
+            "description": "Successful addition of lock",
             "schema": {
-               "$ref": "#/definitions/SimpleSuccessResponse"
+              "$ref": "#/definitions/AddLockResponse"
             }
           },
-           "400": {
-            "description": "Input Error. Check the request payload for issues."
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
-          },
-          "404": {
-            "description": "Not Found. The requested resource does not exist."
-          },
-          "429": {
-            "description": "Rate Limited. Too many requests."
-          },
-          "500": {
-            "description": "Unexpected error"
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -85,26 +78,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Success!",
-            "schema": {}
+            "description": "Successful addition of remarks",
+            "schema": {
+              "$ref": "#/definitions/AddRemarksResponse"
+            }
           },
-          "400": {
-            "description": "Input Error. Check the request payload for issues."
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
-          },
-          "404": {
-            "description": "Not Found. The requested resource does not exist."
-          },
-          "429": {
-            "description": "Rate Limited. Too many requests."
-          },
-          "500": {
-            "description": "Unexpected error"
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -142,26 +130,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Success!",
-            "schema": {}
+            "description": "3rd party watchlist check result",
+            "schema": {
+              "$ref": "#/definitions/SanctionsCheckResponse"
+            }
           },
-          "400": {
-            "description": "Input Error. Check the request payload for issues."
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
-          },
-          "404": {
-            "description": "Not Found. The requested resource does not exist."
-          },
-          "429": {
-            "description": "Rate Limited. Too many requests."
-          },
-          "500": {
-            "description": "Unexpected error"
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -169,7 +152,7 @@
     "/CheckClientAgainstSanctionsListV2": {
       "get": {
         "summary": "Check Client Against Sanctions List (V2)",
-        "description": "The purpose of this API is to check if the specific User ID exists in the internal Sanctions List.<br /><br /><b>Authentication:</b> not required",
+        "description": "Returns whether the client is found in the sanctions list.",
         "operationId": "checkClientAgainstSanctionsListV2",
         "tags": [
           "V2"
@@ -199,26 +182,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Success!",
-            "schema": {}
+            "description": "Sanctions list check result",
+            "schema": {
+              "$ref": "#/definitions/SanctionsCheckResponse"
+            }
           },
-          "400": {
-            "description": "Input Error. Check the request payload for issues."
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
-          },
-          "404": {
-            "description": "Not Found. The requested resource does not exist."
-          },
-          "429": {
-            "description": "Rate Limited. Too many requests."
-          },
-          "500": {
-            "description": "Unexpected error"
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -244,26 +222,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Success!",
-             "schema": {}
+            "description": "Disable account result",
+            "schema": {
+              "$ref": "#/definitions/SimpleSuccessResponse"
+            }
           },
-          "400": {
-            "description": "Input Error. Check the request payload for issues."
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
-          },
-          "404": {
-            "description": "Not Found. The requested resource does not exist."
-          },
-          "429": {
-            "description": "Rate Limited. Too many requests."
-          },
-          "500": {
-            "description": "Unexpected error"
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -271,7 +244,7 @@
     "/EnableProofOfOwnershipV2": {
       "post": {
         "summary": "Enable Proof Of Ownership (V2)",
-        "description": "The purpose of this API is to enable proof of ownership (POO) for a specific User ID.<br /><br /><b>Authentication:</b> not required",
+        "description": "Enables proof of ownership for the specified user ID.<br /><br /><b>Authentication:</b> not required",
         "operationId": "enableProofOfOwnershipV2",
         "tags": [
           "V2"
@@ -289,26 +262,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Success!",
-             "schema": {}
+            "description": "Enable Proof Of Ownership result",
+            "schema": {
+              "$ref": "#/definitions/SimpleSuccessResponse"
+            }
           },
-          "400": {
-            "description": "Input Error. Check the request payload for issues."
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
-          },
-          "404": {
-            "description": "Not Found. The requested resource does not exist."
-          },
-          "429": {
-            "description": "Rate Limited. Too many requests."
-          },
-          "500": {
-            "description": "Unexpected error"
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -346,26 +314,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Success!",
-            "schema": {}
+            "description": "Account balance response",
+            "schema": {
+              "$ref": "#/definitions/AccountBalanceResponse"
+            }
           },
-          "400": {
-            "description": "Input Error. Check the request payload for issues."
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
-          },
-          "404": {
-            "description": "Not Found. The requested resource does not exist."
-          },
-          "429": {
-            "description": "Rate Limited. Too many requests."
-          },
-          "500": {
-            "description": "Unexpected error"
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -403,26 +366,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Success!",
-            "schema": {}
+            "description": "MT5 account balance response",
+            "schema": {
+              "$ref": "#/definitions/MT5AccountBalanceResponse"
+            }
           },
-          "400": {
-            "description": "Input Error. Check the request payload for issues."
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
-          },
-          "404": {
-            "description": "Not Found. The requested resource does not exist."
-          },
-          "429": {
-            "description": "Rate Limited. Too many requests."
-          },
-          "500": {
-            "description": "Unexpected error"
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -460,26 +418,24 @@
         ],
         "responses": {
           "200": {
-            "description": "Success!",
-            "schema": {}
+            "description": "Array of POI verification results",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/POIResult"
+              }
+            }
           },
-          "400": {
-            "description": "Input Error. Check the request payload for issues."
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
-          },
-          "404": {
-            "description": "Not Found. The requested resource does not exist."
-          },
-          "429": {
-            "description": "Rate Limited. Too many requests."
-          },
-          "500": {
-            "description": "Unexpected error"
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -541,27 +497,20 @@
         "responses": {
           "200": {
             "description": "Notification created",
-             "schema": {
+            "schema": {
               "$ref": "#/definitions/NotifyClientResponse"
             }
           },
-          "400": {
-            "description": "Input Error. Check the request payload for issues."
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
-          },
-          "404": {
-            "description": "Not Found. The requested resource does not exist."
-          },
-          "429": {
-            "description": "Rate Limited. Too many requests."
-          },
-          "500": {
-            "description": "Unexpected error"
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -587,28 +536,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Success!",
+            "description": "Lock removal result",
             "schema": {
-               "$ref": "#/definitions/SimpleSuccessResponse"
+              "$ref": "#/definitions/SimpleSuccessResponse"
             }
           },
-          "400": {
-            "description": "Input Error. Check the request payload for issues."
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
-          },
-          "404": {
-            "description": "Not Found. The requested resource does not exist."
-          },
-          "429": {
-            "description": "Rate Limited. Too many requests."
-          },
-          "500": {
-            "description": "Unexpected error"
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -639,26 +581,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Success!",
-            "schema": {}
-          },
-          "400": {
-            "description": "Input Error. Check the request payload for issues."
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
-          },
-          "404": {
-            "description": "Not Found. The requested resource does not exist."
-          },
-          "429": {
-            "description": "Rate Limited. Too many requests."
-          },
-          "500": {
-            "description": "Unexpected error"
+            "description": "Open positions count",
+            "schema": {
+              "$ref": "#/definitions/CountResponse"
+            }
           }
         }
       }
@@ -689,26 +615,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Success!",
-            "schema": {}
-          },
-          "400": {
-            "description": "Input Error. Check the request payload for issues."
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
-          },
-          "404": {
-            "description": "Not Found. The requested resource does not exist."
-          },
-          "429": {
-            "description": "Rate Limited. Too many requests."
-          },
-          "500": {
-            "description": "Unexpected error"
+            "description": "Open positions response",
+            "schema": {
+              "$ref": "#/definitions/OpenPositionsResponse"
+            }
           }
         }
       }
@@ -739,26 +649,44 @@
         ],
         "responses": {
           "200": {
-            "description": "Success!",
-            "schema": {}
+            "description": "Pending orders response",
+            "schema": {
+              "$ref": "#/definitions/PendingOrdersResponse"
+            }
+          }
+        }
+      }
+    },
+    "/pending-orders/countV2": {
+      "get": {
+        "summary": "Get pending orders count (V2)",
+        "description": "Returns the count of pending orders for a given account.<br /><br /><b>Authentication:</b> not required",
+        "operationId": "getPendingOrdersCountV2",
+        "tags": [
+          "V2"
+        ],
+        "parameters": [
+          {
+            "name": "brand_code",
+            "in": "query",
+            "description": "Denotes the brand to direct the request to. Values include: V1 or V2",
+            "required": false,
+            "type": "string"
           },
-          "400": {
-            "description": "Input Error. Check the request payload for issues."
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
-          },
-          "404": {
-            "description": "Not Found. The requested resource does not exist."
-          },
-          "429": {
-            "description": "Rate Limited. Too many requests."
-          },
-          "500": {
-            "description": "Unexpected error"
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Client account id",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pending orders count",
+            "schema": {
+              "$ref": "#/definitions/CountResponse"
+            }
           }
         }
       }
@@ -863,6 +791,96 @@
       "type": "object",
       "properties": {
         "id": { "type": "integer" }
+      }
+    },
+    "AddRemarksResponse": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer", "description": "The ID of the newly created remark." }
+      }
+    },
+    "SanctionsCheckResponse": {
+      "type": "object",
+      "properties": {
+        "sanction_exists": {
+          "type": "integer",
+          "description": "Indicates if a sanction exists (0: No, 1: Yes)",
+          "example": 1
+        }
+      }
+    },
+    "AddLockResponse": {
+      "type": "object",
+      "properties": {
+        "success_ind": { "type": "integer" }
+      }
+    },
+    "AccountBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "balance": { "type": "number" }
+      }
+    },
+    "MT5AccountBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "balance": { "type": "number", "example": 44.44 }
+      }
+    },
+    "POIResult": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "status": { "type": "string" }
+      }
+    },
+    "OpenPosition": {
+      "type": "object",
+      "properties": {
+        "position_id": { "type": "integer" },
+        "login": { "type": "integer" },
+        "symbol": { "type": "string" },
+        "time_create": { "type": "string" },
+        "contract_size": { "type": "string" },
+        "profit": { "type": "string" },
+        "price_open": { "type": "string" },
+        "price_current": { "type": "string" }
+      }
+    },
+    "PendingOrder": {
+      "type": "object",
+      "properties": {
+        "order": { "type": "integer" },
+        "login": { "type": "integer" },
+        "symbol": { "type": "string" },
+        "contract_size": { "type": "string" },
+        "price_order": { "type": "string" },
+        "price_current": { "type": "string" },
+        "time_setup": { "type": "string" }
+      }
+    },
+    "OpenPositionsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/OpenPosition" }
+        }
+      }
+    },
+    "PendingOrdersResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/PendingOrder" }
+        }
+      }
+    },
+    "CountResponse": {
+      "type": "object",
+      "properties": {
+        "count": { "type": "integer", "example": 42 }
       }
     }
   }
