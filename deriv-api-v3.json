@@ -97,7 +97,7 @@
         }
       }
     },
-     "/CheckClientAgainst3rdPartyWatchlistV2": {
+    "/CheckClientAgainst3rdPartyWatchlistV2": {
       "get": {
         "summary": "Check Client Against 3rd Party Watchlist (V2)",
         "description": "The purpose of this API is to check if the specific User ID exists against an external 3rd party provided watchlist.<br /><br /><b>Authentication:</b> not required",
@@ -281,7 +281,7 @@
         }
       }
     },
-     "/GetAccountBalanceV2": {
+    "/GetAccountBalanceV2": {
       "get": {
         "summary": "Get Account Balance (V2)",
         "description": "The purpose of this API is to retrieve the balance across all accounts held for a specific User ID.<br /><br /><b>Authentication:</b> not required",
@@ -385,7 +385,7 @@
         }
       }
     },
-     "/GetPOIDataV2": {
+    "/GetPOIDataV2": {
       "get": {
         "summary": "Get POI Data (V2)",
         "description": "The purpose of this API is to retrieve the POI data for a specific User ID.<br /><br /><b>Authentication:</b> not required",
@@ -475,7 +475,7 @@
         }
       }
     },
-     "/NotifyClientV2": {
+    "/NotifyClientV2": {
       "post": {
         "summary": "Notify Client (V2)",
         "description": "The purpose of this API is to send Notifications to a specific client top level User ID, via a specific channel. ie Email, Intercom, etc<br /><br /><b>Authentication:</b> not required",
@@ -515,7 +515,7 @@
         }
       }
     },
-     "/RemoveLockV2": {
+    "/RemoveLockV2": {
       "post": {
         "summary": "Remove Lock (V2)",
         "description": "The purpose of this API is to remove a Lock of a specific type to a specific User ID. Covers MT5, Cashier and Unwelcome Login Locks.<br /><br /><b>Authentication:</b> not required",
@@ -555,7 +555,7 @@
         }
       }
     },
-     "/open-positions/countV2": {
+    "/open-positions/countV2": {
       "get": {
         "summary": "Count of open positions (V2)",
         "description": "Count of open positions<br /><br /><b>Authentication:</b> not required",
@@ -690,10 +690,47 @@
           }
         }
       }
+    },
+    "/workflow": {
+      "get": {
+        "summary": "Get Workflows",
+        "description": "Returns a list of workflows.<br /><br /><b>Authentication:</b> not required",
+        "operationId": "getWorkflows",
+        "tags": [
+          "V2"
+        ],
+        "parameters": [
+          {
+            "name": "brand",
+            "in": "query",
+            "description": "Brand code (e.g., V1)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Limit the number of returned records",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of workflow objects",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Workflow"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
-     "AddRemarksV2Input": {
+    "AddRemarksV2Input": {
       "type": "object",
       "properties": {
         "brand_code": { "type": "string", "description": "Denotes the brand to direct the request to. Values include: V1 or V2" },
@@ -710,7 +747,7 @@
         "created_by"
       ]
     },
-     "DisableAccountV2Input": {
+    "DisableAccountV2Input": {
       "type": "object",
       "properties": {
         "brand_code": { "type": "string", "description": "Denotes the brand to direct the request to. Values include: V1 or V2" },
@@ -723,7 +760,7 @@
         "created_by"
       ]
     },
-     "EnableProofOfOwnershipV2Input": {
+    "EnableProofOfOwnershipV2Input": {
       "type": "object",
       "properties": {
         "brand_code": { "type": "string", "description": "Denotes the brand to direct the request to. Values include: V1 or V2" },
@@ -736,7 +773,7 @@
         "created_by"
       ]
     },
-     "RemoveLockV2Input": {
+    "RemoveLockV2Input": {
       "type": "object",
       "properties": {
         "brand_code": { "type": "string", "description": "Denotes the brand to direct the request to. Values include: V1 or V2" },
@@ -764,13 +801,13 @@
         "user_id": { "type": "string", "description": "The top level User ID against which the lock will be added." },
         "created_by": { "type": "string", "description": "The internal user or system user for audit purposes." }
       },
-       "required": [
+      "required": [
         "lock_code",
         "user_id",
         "created_by"
       ]
     },
-     "NotifyClientV2Input": {
+    "NotifyClientV2Input": {
       "type": "object",
       "properties": {
         "brand_code": { "type": "string", "description": "Denotes the brand to direct the request to. Values include: V1 or V2" },
@@ -881,6 +918,26 @@
       "type": "object",
       "properties": {
         "count": { "type": "integer", "example": 42 }
+      }
+    },
+    "Workflow": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
       }
     }
   }
