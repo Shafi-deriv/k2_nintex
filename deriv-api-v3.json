@@ -701,7 +701,7 @@
         ],
         "parameters": [
           {
-            "name": "brand",
+            "name": "brand_code",
             "in": "query",
             "description": "Brand code (e.g., V1)",
             "required": false,
