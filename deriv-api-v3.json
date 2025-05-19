@@ -923,7 +923,7 @@
     "Workflow": {
       "type": "object",
       "properties": {
-        "brand": {
+        "brand_res": {
           "type": "string"
         },
         "user_id": {
