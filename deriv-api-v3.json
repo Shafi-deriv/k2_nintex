@@ -1154,6 +1154,10 @@
           "type": "string",
           "example": "profile_change"
         },
+        "nintex_workflow_id":{
+          "type": "string",
+          "example": "123"
+        },
         "brand": {
           "type": "string",
           "example": "V1"
