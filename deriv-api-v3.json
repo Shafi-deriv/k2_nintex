@@ -1159,11 +1159,11 @@
           "example": "V1"
         },
         "user_id": {
-          "type": "integer",
+          "type": "string",
           "example": 1234
         },
         "account_id": {
-          "type": "integer",
+          "type": "string",
           "x-nullable": true,
           "example": null
         },
@@ -1172,12 +1172,12 @@
           "example": "CR"
         },
         "user_id_owner": {
-          "type": "integer",
+          "type": "string",
           "x-nullable": true,
           "example": null
         },
         "user_id_sharer": {
-          "type": "integer",
+          "type": "string",
           "x-nullable": true,
           "example": null
         }
