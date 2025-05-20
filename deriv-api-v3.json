@@ -1150,10 +1150,6 @@
     "WorkflowDetailsResponse": {
       "type": "object",
       "properties": {
-        "workflow_id": {
-          "type": "integer",
-          "example": 1234
-        },
         "trigger_event_type": {
           "type": "string",
           "example": "profile_change"
