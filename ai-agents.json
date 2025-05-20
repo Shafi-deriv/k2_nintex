@@ -53,7 +53,19 @@
           { "name": "jwt_token", "in": "query", "type": "string", "required": true }
         ],
         "responses": {
-          "200": { "description": "Required screening response", "schema": { "$ref": "#/definitions/RequiredScreeningResponse" } },
+          "200": {
+            "description": "Required screening response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ScreeningItem"
+              },
+              "example": [
+                { "name": "PEP" },
+                { "name": "Adverse Media" }
+              ]
+            }
+          },
           "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
         }
       }
@@ -134,6 +146,15 @@
         "suspected_fraud_lvl": { "type": "integer", "example": 55 }
       }
     },
+    "ScreeningItem": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "PEP"
+        }
+      }
+    },
     "RequiredScreeningResponse": {
       "type": "object",
       "properties": {
@@ -152,7 +173,7 @@
       "properties": {
         "required_screening": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": { "$ref": "#/definitions/ScreeningItem" }
         }
       }
     },
