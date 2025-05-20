@@ -6,7 +6,7 @@
     "description": "Swagger file containing only the V2 endpoints for Process Automation."
   },
   "host": "deriv-app.xano.io",
-  "basePath": "api:e71ULXBs",
+  "basePath": "/api:e71ULXBs",
   "schemes": [
     "https"
   ],
@@ -452,7 +452,7 @@
         "responses": {
           "200": {
             "description": "Success!",
-             "schema": {}
+            "schema": {}
           },
           "400": {
             "description": "Input Error. Check the request payload for issues."
@@ -724,6 +724,93 @@
                 "$ref": "#/definitions/Workflow"
               }
             }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Update Workflow Status",
+        "description": "Updates the status of a specific workflow.<br /><br /><b>Authentication:</b> not required",
+        "operationId": "updateWorkflowStatus",
+        "tags": [
+          "V2"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Workflow status update payload",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateWorkflowStatusRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Workflow status updated successfully",
+            "schema": {
+              "$ref": "#/definitions/WorkflowUpdateResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workflow-details": {
+      "get": {
+        "summary": "Get Workflow Details",
+        "description": "Retrieves details for a specific workflow by its ID.<br /><br /><b>Authentication:</b> not required",
+        "operationId": "getWorkflowDetailsById",
+        "tags": [
+          "V2"
+        ],
+        "parameters": [
+          {
+            "name": "workflow_id",
+            "in": "query",
+            "description": "The ID of the workflow to retrieve details for.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of workflow details",
+            "schema": {
+              "$ref": "#/definitions/WorkflowDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -733,11 +820,26 @@
     "AddRemarksV2Input": {
       "type": "object",
       "properties": {
-        "brand_code": { "type": "string", "description": "Denotes the brand to direct the request to. Values include: V1 or V2" },
-        "workflow_id": { "type": "string", "description": "An alpha-numeric ID to relate the remark to a specific instance of a workflow." },
-        "user_id": { "type": "string", "description": "The top level User ID against which the remarks will be added." },
-        "remarks_text": { "type": "string", "description": "The remarks text to be stored." },
-        "created_by": { "type": "string", "description": "The internal user or system user for audit purposes." }
+        "brand_code": {
+          "type": "string",
+          "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+        },
+        "workflow_id": {
+          "type": "string",
+          "description": "An alpha-numeric ID to relate the remark to a specific instance of a workflow."
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The top level User ID against which the remarks will be added."
+        },
+        "remarks_text": {
+          "type": "string",
+          "description": "The remarks text to be stored."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "The internal user or system user for audit purposes."
+        }
       },
       "required": [
         "brand_code",
@@ -750,9 +852,18 @@
     "DisableAccountV2Input": {
       "type": "object",
       "properties": {
-        "brand_code": { "type": "string", "description": "Denotes the brand to direct the request to. Values include: V1 or V2" },
-        "user_id": { "type": "string", "description": "The top level User ID to identify all accounts to be disabled" },
-        "created_by": { "type": "string", "description": "The internal user or system user for audit purposes." }
+        "brand_code": {
+          "type": "string",
+          "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The top level User ID to identify all accounts to be disabled"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "The internal user or system user for audit purposes."
+        }
       },
       "required": [
         "brand_code",
@@ -763,9 +874,18 @@
     "EnableProofOfOwnershipV2Input": {
       "type": "object",
       "properties": {
-        "brand_code": { "type": "string", "description": "Denotes the brand to direct the request to. Values include: V1 or V2" },
-        "user_id": { "type": "string", "description": "The top level User ID to against which Proof of Ownership is to be added." },
-        "created_by": { "type": "string", "description": "The internal user or system user for audit purposes." }
+        "brand_code": {
+          "type": "string",
+          "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The top level User ID to against which Proof of Ownership is to be added."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "The internal user or system user for audit purposes."
+        }
       },
       "required": [
         "brand_code",
@@ -776,10 +896,21 @@
     "RemoveLockV2Input": {
       "type": "object",
       "properties": {
-        "brand_code": { "type": "string", "description": "Denotes the brand to direct the request to. Values include: V1 or V2" },
-        "lock_code": { "type": "string" },
-        "user_id": { "type": "string", "description": "The ID against which the lock will be added. For the MT5 lock, this is the MT5_LOGIN_ID. For the Cashier lock, this is the ACCOUNT_ID." },
-        "created_by": { "type": "string", "description": "The internal user or system user for audit purposes." }
+        "brand_code": {
+          "type": "string",
+          "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+        },
+        "lock_code": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The ID against which the lock will be added. For the MT5 lock, this is the MT5_LOGIN_ID. For the Cashier lock, this is the ACCOUNT_ID."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "The internal user or system user for audit purposes."
+        }
       },
       "required": [
         "lock_code",
@@ -790,16 +921,30 @@
     "SimpleSuccessResponse": {
       "type": "object",
       "properties": {
-        "success": { "type": "integer" }
+        "success": {
+          "type": "integer"
+        }
       }
     },
     "AddLockV2Input": {
       "type": "object",
       "properties": {
-        "brand_code": { "type": "string", "description": "Denotes that the brand to direct the request to. Values include: V1 or V2" },
-        "lock_code": { "type": "string", "description": "" },
-        "user_id": { "type": "string", "description": "The top level User ID against which the lock will be added." },
-        "created_by": { "type": "string", "description": "The internal user or system user for audit purposes." }
+        "brand_code": {
+          "type": "string",
+          "description": "Denotes that the brand to direct the request to. Values include: V1 or V2"
+        },
+        "lock_code": {
+          "type": "string",
+          "description": ""
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The top level User ID against which the lock will be added."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "The internal user or system user for audit purposes."
+        }
       },
       "required": [
         "lock_code",
@@ -810,11 +955,26 @@
     "NotifyClientV2Input": {
       "type": "object",
       "properties": {
-        "brand_code": { "type": "string", "description": "Denotes the brand to direct the request to. Values include: V1 or V2" },
-        "channel_code": { "type": "string", "description": "Denotes that the channel to notify the client via. Values include: EMAIL, INTERCOM" },
-        "user_id": { "type": "string", "description": "The top level User ID against which the remarks will be added." },
-        "notification_text": { "type": "string", "description": "The notifications text to be stored." },
-        "created_by": { "type": "string", "description": "The internal user or system user for audit purposes." }
+        "brand_code": {
+          "type": "string",
+          "description": "Denotes the brand to direct the request to. Values include: V1 or V2"
+        },
+        "channel_code": {
+          "type": "string",
+          "description": "Denotes that the channel to notify the client via. Values include: EMAIL, INTERCOM"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The top level User ID against which the remarks will be added."
+        },
+        "notification_text": {
+          "type": "string",
+          "description": "The notifications text to be stored."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "The internal user or system user for audit purposes."
+        }
       },
       "required": [
         "brand_code",
@@ -827,13 +987,18 @@
     "NotifyClientResponse": {
       "type": "object",
       "properties": {
-        "id": { "type": "integer" }
+        "id": {
+          "type": "integer"
+        }
       }
     },
     "AddRemarksResponse": {
       "type": "object",
       "properties": {
-        "id": { "type": "integer", "description": "The ID of the newly created remark." }
+        "id": {
+          "type": "integer",
+          "description": "The ID of the newly created remark."
+        }
       }
     },
     "SanctionsCheckResponse": {
@@ -849,51 +1014,92 @@
     "AddLockResponse": {
       "type": "object",
       "properties": {
-        "success": { "type": "integer" }
+        "success": {
+          "type": "integer"
+        }
       }
     },
     "AccountBalanceResponse": {
       "type": "object",
       "properties": {
-        "balance": { "type": "number" }
+        "balance": {
+          "type": "number"
+        }
       }
     },
     "MT5AccountBalanceResponse": {
       "type": "object",
       "properties": {
-        "balance": { "type": "number", "example": 44.44 }
+        "balance": {
+          "type": "number",
+          "example": 44.44
+        }
       }
     },
     "POIResult": {
       "type": "object",
       "properties": {
-        "type": { "type": "string" },
-        "status": { "type": "string" }
+        "type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
       }
     },
     "OpenPosition": {
       "type": "object",
       "properties": {
-        "position_id": { "type": "integer" },
-        "login": { "type": "integer" },
-        "symbol": { "type": "string" },
-        "time_create": { "type": "string" },
-        "contract_size": { "type": "string" },
-        "profit": { "type": "string" },
-        "price_open": { "type": "string" },
-        "price_current": { "type": "string" }
+        "position_id": {
+          "type": "integer"
+        },
+        "login": {
+          "type": "integer"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "time_create": {
+          "type": "string"
+        },
+        "contract_size": {
+          "type": "string"
+        },
+        "profit": {
+          "type": "string"
+        },
+        "price_open": {
+          "type": "string"
+        },
+        "price_current": {
+          "type": "string"
+        }
       }
     },
     "PendingOrder": {
       "type": "object",
       "properties": {
-        "order": { "type": "integer" },
-        "login": { "type": "integer" },
-        "symbol": { "type": "string" },
-        "contract_size": { "type": "string" },
-        "price_order": { "type": "string" },
-        "price_current": { "type": "string" },
-        "time_setup": { "type": "string" }
+        "order": {
+          "type": "integer"
+        },
+        "login": {
+          "type": "integer"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "contract_size": {
+          "type": "string"
+        },
+        "price_order": {
+          "type": "string"
+        },
+        "price_current": {
+          "type": "string"
+        },
+        "time_setup": {
+          "type": "string"
+        }
       }
     },
     "OpenPositionsResponse": {
@@ -901,7 +1107,9 @@
       "properties": {
         "data": {
           "type": "array",
-          "items": { "$ref": "#/definitions/OpenPosition" }
+          "items": {
+            "$ref": "#/definitions/OpenPosition"
+          }
         }
       }
     },
@@ -910,29 +1118,106 @@
       "properties": {
         "data": {
           "type": "array",
-          "items": { "$ref": "#/definitions/PendingOrder" }
+          "items": {
+            "$ref": "#/definitions/PendingOrder"
+          }
         }
       }
     },
     "CountResponse": {
       "type": "object",
       "properties": {
-        "count": { "type": "integer", "example": 42 }
+        "count": {
+          "type": "integer",
+          "example": 42
+        }
       }
     },
     "Workflow": {
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "integer"
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "brand": {
+          "type": "string"
+        }
+      }
     },
-    "name": {
-      "type": "string"
+    "WorkflowDetailsResponse": {
+      "type": "object",
+      "properties": {
+        "workflow_id": {
+          "type": "integer",
+          "example": 1234
+        },
+        "trigger_event_type": {
+          "type": "string",
+          "example": "profile_change"
+        },
+        "brand": {
+          "type": "string",
+          "example": "V1"
+        },
+        "user_id": {
+          "type": "integer",
+          "example": 1234
+        },
+        "account_id": {
+          "type": "integer",
+          "x-nullable": true,
+          "example": null
+        },
+        "broker_code": {
+          "type": "string",
+          "example": "CR"
+        },
+        "user_id_owner": {
+          "type": "integer",
+          "x-nullable": true,
+          "example": null
+        },
+        "user_id_sharer": {
+          "type": "integer",
+          "x-nullable": true,
+          "example": null
+        }
+      }
     },
-    "brand": {
-      "type": "string"
+    "UpdateWorkflowStatusRequest": {
+      "type": "object",
+      "required": [
+        "workflow_id",
+        "status",
+        "nintex_workflow_id"
+      ],
+      "properties": {
+        "workflow_id": {
+          "type": "integer",
+          "example": 28
+        },
+        "status": {
+          "type": "string",
+          "example": "started"
+        },
+        "nintex_workflow_id": {
+          "type": "string",
+          "example": "hellobjbb"
+        }
+      }
+    },
+    "WorkflowUpdateResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The ID of the workflow that was updated.",
+          "example": 28
+        }
+      }
     }
-  }
-}
   }
 }
