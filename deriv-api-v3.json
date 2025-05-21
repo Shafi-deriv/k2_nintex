@@ -126,6 +126,13 @@
             "description": "The internal user or system user for audit purposes.",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "watch_list",
+            "in": "query",
+            "description": "Watch list paremeter with which user will be screened",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
