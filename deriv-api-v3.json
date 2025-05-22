@@ -787,7 +787,7 @@
         ],
         "parameters": [
           {
-            "name": "nintex_workflow_id",
+            "name": "workflow_id",
             "in": "query",
             "description": "The ID of the workflow to retrieve details for.",
             "required": true,
