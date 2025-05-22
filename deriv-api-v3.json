@@ -1181,8 +1181,7 @@
       "type": "object",
       "required": [
         "workflow_id",
-        "status",
-        "nintex_workflow_id"
+        "status"
       ],
       "properties": {
         "workflow_id": {
