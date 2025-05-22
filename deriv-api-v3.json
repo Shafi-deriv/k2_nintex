@@ -1204,10 +1204,6 @@
         "status": {
           "type": "string",
           "example": "started"
-        },
-        "nintex_workflow_id": {
-          "type": "string",
-          "example": "hellobjbb"
         }
       }
     },
