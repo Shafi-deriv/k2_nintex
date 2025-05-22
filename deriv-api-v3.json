@@ -708,13 +708,6 @@
         ],
         "parameters": [
           {
-            "name": "brand_code",
-            "in": "query",
-            "description": "Brand code (e.g., V1)",
-            "required": false,
-            "type": "string"
-          },
-          {
             "name": "count",
             "in": "query",
             "description": "Limit the number of returned records",
@@ -1151,6 +1144,12 @@
         },
         "brand": {
           "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "event_type": {
+          "type":  "string"
         }
       }
     },
