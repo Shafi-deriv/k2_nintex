@@ -1156,14 +1156,6 @@
     "WorkflowDetailsResponse": {
       "type": "object",
       "properties": {
-        "trigger_event_type": {
-          "type": "string",
-          "example": "profile_change"
-        },
-        "brand": {
-          "type": "string",
-          "example": "V1"
-        },
         "user_id": {
           "type": "string",
           "example": 1234
@@ -1173,14 +1165,10 @@
           "x-nullable": true,
           "example": null
         },
-        "broker_code": {
-          "type": "string",
-          "example": "CR"
-        },
-        "user_id_owner": {
+        "broker": {
           "type": "string",
           "x-nullable": true,
-          "example": null
+          "example": "CR"
         },
         "user_id_sharer": {
           "type": "string",
