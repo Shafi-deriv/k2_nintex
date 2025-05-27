@@ -814,6 +814,158 @@
           }
         }
       }
+    },
+    "/workflow-client-screening": {
+      "get": {
+        "summary": "Get Workflow Client Screening Details",
+        "description": "Retrieves client screening details associated with a specific workflow.<br /><br /><b>Authentication:</b> not required",
+        "operationId": "getWorkflowClientScreening",
+        "tags": [
+          "V2"
+        ],
+        "parameters": [
+          {
+            "name": "workflow_id",
+            "in": "query",
+            "description": "The ID of the workflow to retrieve client screening details for.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client screening details for workflow",
+            "schema": {
+              "$ref": "#/definitions/WorkflowClientScreeningResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workflow-spm-check-poi-poo": {
+      "get": {
+        "summary": "Get Workflow SPM POI/POO Check Details",
+        "description": "Retrieves Proof of Identity (POI) and Proof of Ownership (POO) check details for a specific workflow.<br /><br /><b>Authentication:</b> not required",
+        "operationId": "getWorkflowSpmCheckPoiPoo",
+        "tags": [
+          "V2"
+        ],
+        "parameters": [
+          {
+            "name": "workflow_id",
+            "in": "query",
+            "description": "The ID of the workflow to retrieve POI/POO check details for.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "POI/POO check details for workflow",
+            "schema": {
+              "$ref": "#/definitions/WorkflowSpmCheckPoiPooResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workflow-duplicate-account": {
+      "get": {
+        "summary": "Get Workflow Duplicate Account Details",
+        "description": "Retrieves duplicate account information associated with a specific workflow.<br /><br /><b>Authentication:</b> not required",
+        "operationId": "getWorkflowDuplicateAccount",
+        "tags": [
+          "V2"
+        ],
+        "parameters": [
+          {
+            "name": "workflow_id",
+            "in": "query",
+            "description": "The ID of the workflow to retrieve duplicate account details for.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Duplicate account details for workflow",
+            "schema": {
+              "$ref": "#/definitions/WorkflowDuplicateAccountResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workflow-spm-validate-owner": {
+      "get": {
+        "summary": "Get Workflow SPM Validate Owner Details",
+        "description": "Retrieves owner validation details for a specific workflow.<br /><br /><b>Authentication:</b> not required",
+        "operationId": "getWorkflowSpmValidateOwner",
+        "tags": [
+          "V2"
+        ],
+        "parameters": [
+          {
+            "name": "workflow_id",
+            "in": "query",
+            "description": "The ID of the workflow to retrieve owner validation details for.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owner validation details for workflow",
+            "schema": {
+              "$ref": "#/definitions/WorkflowSpmValidateOwnerResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -1201,6 +1353,58 @@
           "type": "integer",
           "description": "The ID of the workflow that was updated.",
           "example": 28
+        }
+      }
+    },
+    "WorkflowClientScreeningResponse": {
+      "type": "object",
+      "properties": {
+        "broker": {
+          "type": "string",
+          "description": "Broker associated with the client."
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The primary user ID."
+        },
+        "account_id": {
+          "type": "string",
+          "description": "The account ID."
+        },
+        "related_account_identfier": {
+          "type": "string",
+          "description": "An identifier for a related account (e.g., user_id_sharer)."
+        }
+      }
+    },
+    "WorkflowSpmCheckPoiPooResponse": {
+      "type": "object",
+      "properties": {
+        "user_id_owner": {
+          "type": "string",
+          "description": "The user ID of the owner."
+        },
+        "user_id_sharer": {
+          "type": "string",
+          "description": "The user ID of the account sharer, if applicable."
+        }
+      }
+    },
+    "WorkflowDuplicateAccountResponse": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "The user ID associated with the duplicate account check."
+        }
+      }
+    },
+    "WorkflowSpmValidateOwnerResponse": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "The user ID validated as owner."
         }
       }
     }
