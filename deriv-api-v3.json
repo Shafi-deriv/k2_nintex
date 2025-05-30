@@ -1012,6 +1012,10 @@
           "type": "string",
           "description": "The top level User ID to identify all accounts to be disabled"
         },
+        "reason": {
+          "type": "string",
+          "description": "The reason for adding the lock."
+        },
         "created_by": {
           "type": "string",
           "description": "The internal user or system user for audit purposes."
@@ -1092,6 +1096,10 @@
         "user_id": {
           "type": "string",
           "description": "The top level User ID against which the lock will be added."
+        },
+        "reason": {
+          "type": "string",
+          "description": "The reason for adding the lock."
         },
         "created_by": {
           "type": "string",
