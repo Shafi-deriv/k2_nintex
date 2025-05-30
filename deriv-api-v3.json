@@ -1012,7 +1012,7 @@
           "type": "string",
           "description": "The top level User ID to identify all accounts to be disabled"
         },
-        "reason": {
+        "remarks": {
           "type": "string",
           "description": "The reason for adding the lock."
         },
@@ -1097,7 +1097,7 @@
           "type": "string",
           "description": "The top level User ID against which the lock will be added."
         },
-        "reason": {
+        "remarks": {
           "type": "string",
           "description": "The reason for adding the lock."
         },
