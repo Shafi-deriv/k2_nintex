@@ -41,23 +41,97 @@
         }
       }
     },
-    "/v1-bridge/duplicate-account/analysis": {
+    "/v1-bridge/duplicate-user": {
       "get": {
-        "summary": "Get Detailed Duplicate Account Analysis",
-        "description": "Provides a detailed analysis of duplicate accounts, including accounts recommended for disabling, accounts to keep, and a comprehensive explanation.",
-        "operationId": "getDetailedDuplicateAccountAnalysis",
+        "summary": "Analyze Duplicate Users",
+        "description": "Analyzes potential duplicate users based on the provided user ID, categorizing them for deactivation or retention with confidence levels and explanations.",
+        "operationId": "analyzeDuplicateUsers",
         "parameters": [
-          { "name": "user_id", "in": "query", "type": "string", "required": true, "description": "The user ID for which to perform the duplicate account analysis." }
+          {
+            "name": "user_id",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "The user ID to initiate the duplicate user analysis for."
+          }
         ],
         "responses": {
           "200": {
-            "description": "Detailed duplicate account analysis result.",
-            "schema": { "$ref": "#/definitions/DetailedDuplicateAccountAnalysisResponse" }
+            "description": "Duplicate user analysis result, categorizing users for deactivation or retention.",
+            "schema": {
+              "$ref": "#/definitions/DuplicateUserAnalysisResponse"
+            },
+            "examples": {
+              "application/json": {
+                "users_to_disable": [
+                  {
+                    "user_id": "800002",
+                    "confidence_lvl": 100,
+                    "explanation": "Primary user. Exact email match to search criteria.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "100001",
+                    "confidence_lvl": 99,
+                    "explanation": "Identical address, date of birth, phone number, and POI document to user 800002. Similar name (Hannah Wright vs Hannah Right).",
+                    "regulated_account_included": true
+                  }
+                ],
+                "analyzed_users_to_keep": [
+                  {
+                    "user_id": "100280",
+                    "confidence_lvl": 40,
+                    "explanation": "Similar email (hwright@hotmail.com) and similar name (Hannah Wright) to user 800002.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "102626",
+                    "confidence_lvl": 40,
+                    "explanation": "Similar email (hannah.wright.pro@gmail.com) and similar name (Hannah Wright) to user 800002.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "104492",
+                    "confidence_lvl": 40,
+                    "explanation": "Similar email (hannah.w567@yandex.com) and similar name (Hannah Wright) to user 800002.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "119106",
+                    "confidence_lvl": 40,
+                    "explanation": "Similar email (hannah.w@yahoo.com) and similar name (Hannah Wright) to user 800002.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "132670",
+                    "confidence_lvl": 40,
+                    "explanation": "Similar email (hannahw@outlook.com) and similar name (Hannah Wright) to user 800002.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "138604",
+                    "confidence_lvl": 40,
+                    "explanation": "ggg.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "143324",
+                    "confidence_lvl": 40,
+                    "explanation": "tytyt.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "900002",
+                    "confidence_lvl": 99,
+                    "explanation": "gggg",
+                    "regulated_account_included": true
+                  }
+                ],
+                "explanation": "The search criteria provided matches(name/email similarity) but lack the convergence of multiple unique identifiers seen in the top matches."
+              }
+            }
           },
-          "default": {
-            "description": "Unexpected error",
-            "schema": { "type": "object", "properties": { "message": { "type": "string" } } }
-          }
+          "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
         }
       }
     },
@@ -220,60 +294,68 @@
         "validation_confidence_lvl": { "type": "integer", "example": 50 }
       }
     },
-    "UserAccountDetails": {
+    "UserAnalysisDetail": {
       "type": "object",
-      "description": "Details of a user account in the analysis, including user ID, confidence level, and regulated account status.",
+      "description": "Details about a single user's analysis, including confidence and regulation status.",
       "properties": {
-        "user_id": { "type": "string", "description": "The unique identifier of the user account.", "example": "CR0000001" },
-        "confidence_lvl": { "type": "integer", "format": "int32", "minimum": 0, "maximum": 100, "description": "A confidence score (0-100) indicating the likelihood of the account's classification (e.g., to disable or to keep).", "example": 95 },
-        "regulated_account_included": { "type": "boolean", "description": "Indicates whether this specific account is a regulated account.", "example": true }
-      },
-      "required": ["user_id", "confidence_lvl", "regulated_account_included"]
-    },
-    "DetailedDuplicateAccountAnalysisResponse": {
-      "type": "object",
-      "description": "Comprehensive analysis of duplicate accounts, providing recommendations and an explanation.",
-      "properties": {
-        "users_to_disable": {
-          "type": "array",
-          "description": "A list of user accounts identified as candidates for disabling due to being duplicates or associated with fraud.",
-          "items": {
-            "$ref": "#/definitions/UserAccountDetails"
-          },
-          "example": [
-            {
-              "user_id": "CR0000002",
-              "confidence_lvl": 98,
-              "regulated_account_included": true
-            },
-            {
-              "user_id": "CR0000003",
-              "confidence_lvl": 90,
-              "regulated_account_included": false
-            }
-          ]
+        "user_id": {
+          "type": "string",
+          "description": "Unique identifier for the user.",
+          "example": "800002"
         },
-        "analyzed_users_to_keep": {
-          "type": "array",
-          "description": "A list of user accounts that were part of the analysis but are recommended to be kept.",
-          "items": {
-            "$ref": "#/definitions/UserAccountDetails"
-          },
-          "example": [
-            {
-              "user_id": "CR0000001",
-              "confidence_lvl": 85,
-              "regulated_account_included": true
-            }
-          ]
+        "confidence_lvl": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Confidence level (0-100) of the analysis for this user.",
+          "example": 100
         },
         "explanation": {
           "type": "string",
-          "description": "A detailed textual explanation providing insights into the analysis process and the rationale behind the recommendations.",
-          "example": "The analysis indicates that CR0000002 and CR0000003 are duplicates of CR0000001 based on shared IP addresses and similar registration details. CR0000001 is the primary regulated account and should be kept, while the others are candidates for disablement due to strong linkage."
+          "description": "A textual explanation for the user's categorization or analysis outcome.",
+          "example": "Primary user. Exact email match to search criteria."
+        },
+        "regulated_account_included": {
+          "type": "boolean",
+          "description": "Indicates if the user's account is a regulated account.",
+          "example": true
         }
       },
-      "required": ["users_to_disable", "analyzed_users_to_keep", "explanation"]
+      "required": [
+        "user_id",
+        "confidence_lvl",
+        "explanation",
+        "regulated_account_included"
+      ]
+    },
+    "DuplicateUserAnalysisResponse": {
+      "type": "object",
+      "description": "Comprehensive response for the duplicate user analysis.",
+      "properties": {
+        "users_to_disable": {
+          "type": "array",
+          "description": "A list of user accounts identified as candidates for deactivation due to high confidence of being duplicates or primary.",
+          "items": {
+            "$ref": "#/definitions/UserAnalysisDetail"
+          }
+        },
+        "analyzed_users_to_keep": {
+          "type": "array",
+          "description": "A list of user accounts that were analyzed but are recommended for retention, typically due to lower confidence as duplicates or distinct characteristics.",
+          "items": {
+            "$ref": "#/definitions/UserAnalysisDetail"
+          }
+        },
+        "explanation": {
+          "type": "string",
+          "description": "An overall summary or explanation for the entire duplicate user analysis process.",
+          "example": "The search criteria provided matches(name/email similarity) but lack the convergence of multiple unique identifiers seen in the top matches."
+        }
+      },
+      "required": [
+        "users_to_disable",
+        "analyzed_users_to_keep",
+        "explanation"
+      ]
     }
   }
 }
