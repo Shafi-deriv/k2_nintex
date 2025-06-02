@@ -41,6 +41,26 @@
         }
       }
     },
+    "/v1-bridge/duplicate-account/analysis": {
+      "get": {
+        "summary": "Get Detailed Duplicate Account Analysis",
+        "description": "Provides a detailed analysis of duplicate accounts, including accounts recommended for disabling, accounts to keep, and a comprehensive explanation.",
+        "operationId": "getDetailedDuplicateAccountAnalysis",
+        "parameters": [
+          { "name": "user_id", "in": "query", "type": "string", "required": true, "description": "The user ID for which to perform the duplicate account analysis." }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detailed duplicate account analysis result.",
+            "schema": { "$ref": "#/definitions/DetailedDuplicateAccountAnalysisResponse" }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": { "type": "object", "properties": { "message": { "type": "string" } } }
+          }
+        }
+      }
+    },
     "/v1-bridge/required-screening": {
       "get": {
         "summary": "Get Required Screening",
@@ -199,6 +219,61 @@
         "num_of_cards_in_acc": { "type": "integer", "example": 1 },
         "validation_confidence_lvl": { "type": "integer", "example": 50 }
       }
+    },
+    "UserAccountDetails": {
+      "type": "object",
+      "description": "Details of a user account in the analysis, including user ID, confidence level, and regulated account status.",
+      "properties": {
+        "user_id": { "type": "string", "description": "The unique identifier of the user account.", "example": "CR0000001" },
+        "confidence_lvl": { "type": "integer", "format": "int32", "minimum": 0, "maximum": 100, "description": "A confidence score (0-100) indicating the likelihood of the account's classification (e.g., to disable or to keep).", "example": 95 },
+        "regulated_account_included": { "type": "boolean", "description": "Indicates whether this specific account is a regulated account.", "example": true }
+      },
+      "required": ["user_id", "confidence_lvl", "regulated_account_included"]
+    },
+    "DetailedDuplicateAccountAnalysisResponse": {
+      "type": "object",
+      "description": "Comprehensive analysis of duplicate accounts, providing recommendations and an explanation.",
+      "properties": {
+        "users_to_disable": {
+          "type": "array",
+          "description": "A list of user accounts identified as candidates for disabling due to being duplicates or associated with fraud.",
+          "items": {
+            "$ref": "#/definitions/UserAccountDetails"
+          },
+          "example": [
+            {
+              "user_id": "CR0000002",
+              "confidence_lvl": 98,
+              "regulated_account_included": true
+            },
+            {
+              "user_id": "CR0000003",
+              "confidence_lvl": 90,
+              "regulated_account_included": false
+            }
+          ]
+        },
+        "analyzed_users_to_keep": {
+          "type": "array",
+          "description": "A list of user accounts that were part of the analysis but are recommended to be kept.",
+          "items": {
+            "$ref": "#/definitions/UserAccountDetails"
+          },
+          "example": [
+            {
+              "user_id": "CR0000001",
+              "confidence_lvl": 85,
+              "regulated_account_included": true
+            }
+          ]
+        },
+        "explanation": {
+          "type": "string",
+          "description": "A detailed textual explanation providing insights into the analysis process and the rationale behind the recommendations.",
+          "example": "The analysis indicates that CR0000002 and CR0000003 are duplicates of CR0000001 based on shared IP addresses and similar registration details. CR0000001 is the primary regulated account and should be kept, while the others are candidates for disablement due to strong linkage."
+        }
+      },
+      "required": ["users_to_disable", "analyzed_users_to_keep", "explanation"]
     }
   }
 }
