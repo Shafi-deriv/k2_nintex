@@ -1131,6 +1131,10 @@
           "type": "string",
           "description": "The notifications text to be stored."
         },
+        "notification_event": {
+          "type": "string",
+          "description": "The notifications event to be stored."
+        },
         "created_by": {
           "type": "string",
           "description": "The internal user or system user for audit purposes."
