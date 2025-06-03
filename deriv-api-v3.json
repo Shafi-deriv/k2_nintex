@@ -966,6 +966,44 @@
           }
         }
       }
+    },
+     "/CheckDuplicateUser": {
+      "get": {
+        "summary": "Check Duplicate User",
+        "description": "Checks for duplicate users based on the provided user_id.<br /><br /><b>Authentication:</b> not required",
+        "operationId": "checkDuplicateUser",
+        "tags": [
+          "V2"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "The User ID to check for duplicates.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Duplicate user check result",
+            "schema": {
+              "$ref": "#/definitions/CheckDuplicateUserResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -1417,6 +1455,40 @@
         "user_id": {
           "type": "string",
           "description": "The user ID validated as owner."
+        }
+      }
+    },
+ "CheckDuplicateUserResponse": {
+      "type": "object",
+      "properties": {
+        "recommended_duplicate_user_id": {
+          "type": "string",
+          "description": "The recommended duplicate user ID if a potential duplicate is found."
+        },
+        "associated_duplicate_user_id_list": {
+          "type": "string",
+          "description": "A comma-separated list of associated duplicate user IDs."
+        },
+        "confidence_level": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The confidence level of the duplication check, as a percentage."
+        },
+        "regulated_account_included": {
+          "type": "boolean",
+          "description": "Indicates if a regulated account is included in the duplicate check."
+        },
+        "brand": {
+          "type": "string",
+          "description": "The brand associated with the user."
+        },
+        "explanation": {
+          "type": "string",
+          "description": "An explanation of the duplicate check result."
+        },
+        "result_set_id": {
+          "type": "string",
+          "description": "The ID of the result set for this check."
         }
       }
     }
