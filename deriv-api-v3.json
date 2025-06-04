@@ -1478,6 +1478,10 @@
           "type": "boolean",
           "description": "Indicates if a regulated account is included in the duplicate check."
         },
+       "is_duplicate": {
+          "type": "boolean",
+          "description": "Indicates duplicate account is found."
+        },
         "brand": {
           "type": "string",
           "description": "The brand associated with the user."
