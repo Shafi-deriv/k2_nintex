@@ -10,8 +10,12 @@
   "schemes": [
     "https"
   ],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/v1-bridge/duplicate-account": {
       "get": {
@@ -19,11 +23,31 @@
         "description": "Checks if a given user ID is a duplicate account and provides related metadata.",
         "operationId": "checkDuplicateAccount",
         "parameters": [
-          { "name": "user_id", "in": "query", "type": "string", "required": true }
+          {
+            "name": "user_id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
         ],
         "responses": {
-          "200": { "description": "Duplicate account check result", "schema": { "$ref": "#/definitions/DuplicateAccountResponse" } },
-          "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
+          "200": {
+            "description": "Duplicate account check result",
+            "schema": {
+              "$ref": "#/definitions/DuplicateAccountResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -33,11 +57,31 @@
         "description": "Returns the data for the duplicate account check.",
         "operationId": "getDuplicateAccountData",
         "parameters": [
-          { "name": "user_id", "in": "query", "type": "string", "required": true }
+          {
+            "name": "user_id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
         ],
         "responses": {
-          "200": { "description": "Data for the duplicate account check", "schema": { "$ref": "#/definitions/DuplicateAccountData" } },
-          "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
+          "200": {
+            "description": "Data for the duplicate account check",
+            "schema": {
+              "$ref": "#/definitions/DuplicateAccountData"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -131,7 +175,55 @@
               }
             }
           },
-          "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1-bridge/check-duplicate-user": {
+      "get": {
+        "summary": "Check Duplicate User",
+        "description": "Checks for duplicate users based on the provided user_id.<br /><br /><b>Authentication:</b> not required",
+        "operationId": "checkDuplicateUser",
+        "tags": [
+          "V2"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "The User ID to check for duplicates.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Duplicate user check result",
+            "schema": {
+              "$ref": "#/definitions/CheckDuplicateUserResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -141,10 +233,30 @@
         "description": "Returns required screening for given broker, event and regulation status.",
         "operationId": "getRequiredScreening",
         "parameters": [
-          { "name": "broker_code", "in": "query", "type": "string", "required": true },
-          { "name": "event_name", "in": "query", "type": "string", "required": true },
-          { "name": "regulated", "in": "query", "type": "boolean", "required": true },
-          { "name": "jwt_token", "in": "query", "type": "string", "required": true }
+          {
+            "name": "broker_code",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "event_name",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "regulated",
+            "in": "query",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "jwt_token",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
         ],
         "responses": {
           "200": {
@@ -155,12 +267,26 @@
                 "$ref": "#/definitions/ScreeningItem"
               },
               "example": [
-                { "name": "PEP" },
-                { "name": "Adverse Media" }
+                {
+                  "name": "PEP"
+                },
+                {
+                  "name": "Adverse Media"
+                }
               ]
             }
           },
-          "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -170,14 +296,49 @@
         "description": "Returns only required screening data.",
         "operationId": "getRequiredScreeningData",
         "parameters": [
-          { "name": "broker_code", "in": "query", "type": "string", "required": true },
-          { "name": "event_name", "in": "query", "type": "string", "required": true },
-          { "name": "regulated", "in": "query", "type": "boolean", "required": true },
-          { "name": "jwt_token", "in": "query", "type": "string", "required": true }
+          {
+            "name": "broker_code",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "event_name",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "regulated",
+            "in": "query",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "jwt_token",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
         ],
         "responses": {
-          "200": { "description": "Required screening data", "schema": { "$ref": "#/definitions/RequiredScreeningData" } },
-          "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
+          "200": {
+            "description": "Required screening data",
+            "schema": {
+              "$ref": "#/definitions/RequiredScreeningData"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -187,12 +348,37 @@
         "description": "Validates proof of ownership for user.",
         "operationId": "validateProofOfOwnership",
         "parameters": [
-          { "name": "user_id", "in": "query", "type": "string", "required": true },
-          { "name": "jwt_token", "in": "query", "type": "string", "required": true }
+          {
+            "name": "user_id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "jwt_token",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
         ],
         "responses": {
-          "200": { "description": "Validation response", "schema": { "$ref": "#/definitions/ValidatePOOResponse" } },
-          "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
+          "200": {
+            "description": "Validation response",
+            "schema": {
+              "$ref": "#/definitions/ValidatePOOResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -202,12 +388,37 @@
         "description": "Returns only validation data.",
         "operationId": "getValidatePOOData",
         "parameters": [
-          { "name": "user_id", "in": "query", "type": "string", "required": true },
-          { "name": "jwt_token", "in": "query", "type": "string", "required": true }
+          {
+            "name": "user_id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "jwt_token",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
         ],
         "responses": {
-          "200": { "description": "Validation POO data", "schema": { "$ref": "#/definitions/ValidatePOOData" } },
-          "default": { "description": "Unexpected error", "schema": { "type": "object", "properties": { "message": { "type": "string" } } } }
+          "200": {
+            "description": "Validation POO data",
+            "schema": {
+              "$ref": "#/definitions/ValidatePOOData"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -219,25 +430,60 @@
         "meta": {
           "type": "object",
           "properties": {
-            "endpoint": { "type": "string", "example": "/api:QQZDcMfq/v1-bridge/duplicate-account?user_id=CR0000001" },
-            "verb": { "type": "string", "example": "GET" }
+            "endpoint": {
+              "type": "string",
+              "example": "/api:QQZDcMfq/v1-bridge/duplicate-account?user_id=CR0000001"
+            },
+            "verb": {
+              "type": "string",
+              "example": "GET"
+            }
           }
         },
-        "data": { "$ref": "#/definitions/DuplicateAccountData" }
+        "data": {
+          "$ref": "#/definitions/DuplicateAccountData"
+        }
       }
     },
     "DuplicateAccountData": {
       "type": "object",
       "properties": {
-        "is_duplicate_acc": { "type": "boolean", "example": false },
-        "duplicate_acc_confidence": { "type": "integer", "example": 80 },
-        "acc_to_disable_confidence": { "type": "integer", "example": 85 },
-        "acc_to_disable": { "type": "string", "example": "CR12345" },
-        "regulated_acc": { "type": "boolean", "example": true },
-        "duplicate_acc_type": { "type": "string", "example": "CFD" },
-        "duplicate_acc_funds": { "type": "number", "example": 4 },
-        "open_positions": { "type": "boolean", "example": false },
-        "suspected_fraud_lvl": { "type": "integer", "example": 55 }
+        "is_duplicate_acc": {
+          "type": "boolean",
+          "example": false
+        },
+        "duplicate_acc_confidence": {
+          "type": "integer",
+          "example": 80
+        },
+        "acc_to_disable_confidence": {
+          "type": "integer",
+          "example": 85
+        },
+        "acc_to_disable": {
+          "type": "string",
+          "example": "CR12345"
+        },
+        "regulated_acc": {
+          "type": "boolean",
+          "example": true
+        },
+        "duplicate_acc_type": {
+          "type": "string",
+          "example": "CFD"
+        },
+        "duplicate_acc_funds": {
+          "type": "number",
+          "example": 4
+        },
+        "open_positions": {
+          "type": "boolean",
+          "example": false
+        },
+        "suspected_fraud_lvl": {
+          "type": "integer",
+          "example": 55
+        }
       }
     },
     "ScreeningItem": {
@@ -255,11 +501,19 @@
         "meta": {
           "type": "object",
           "properties": {
-            "endpoint": { "type": "string", "example": "/api:QQZDcMfq/v1-bridge/required-screening?broker_code=CR&event_name=High%20Risk&regulated=true&jwt_token=rrr" },
-            "verb": { "type": "string", "example": "GET" }
+            "endpoint": {
+              "type": "string",
+              "example": "/api:QQZDcMfq/v1-bridge/required-screening?broker_code=CR&event_name=High%20Risk&regulated=true&jwt_token=rrr"
+            },
+            "verb": {
+              "type": "string",
+              "example": "GET"
+            }
           }
         },
-        "data": { "$ref": "#/definitions/RequiredScreeningData" }
+        "data": {
+          "$ref": "#/definitions/RequiredScreeningData"
+        }
       }
     },
     "RequiredScreeningData": {
@@ -267,7 +521,9 @@
       "properties": {
         "required_screening": {
           "type": "array",
-          "items": { "$ref": "#/definitions/ScreeningItem" }
+          "items": {
+            "$ref": "#/definitions/ScreeningItem"
+          }
         }
       }
     },
@@ -277,21 +533,44 @@
         "meta": {
           "type": "object",
           "properties": {
-            "endpoint": { "type": "string", "example": "/api:QQZDcMfq/v1-bridge/validate-poo?user_id=Cr001&jwt_token=ghgh" },
-            "verb": { "type": "string", "example": "GET" }
+            "endpoint": {
+              "type": "string",
+              "example": "/api:QQZDcMfq/v1-bridge/validate-poo?user_id=Cr001&jwt_token=ghgh"
+            },
+            "verb": {
+              "type": "string",
+              "example": "GET"
+            }
           }
         },
-        "data": { "$ref": "#/definitions/ValidatePOOData" }
+        "data": {
+          "$ref": "#/definitions/ValidatePOOData"
+        }
       }
     },
     "ValidatePOOData": {
       "type": "object",
       "properties": {
-        "owner_acc": { "type": "string", "example": "CR01" },
-        "sharer_acc": { "type": "string", "example": "CR02" },
-        "poo_from_acc": { "type": "string", "example": "owner" },
-        "num_of_cards_in_acc": { "type": "integer", "example": 1 },
-        "validation_confidence_lvl": { "type": "integer", "example": 50 }
+        "owner_acc": {
+          "type": "string",
+          "example": "CR01"
+        },
+        "sharer_acc": {
+          "type": "string",
+          "example": "CR02"
+        },
+        "poo_from_acc": {
+          "type": "string",
+          "example": "owner"
+        },
+        "num_of_cards_in_acc": {
+          "type": "integer",
+          "example": 1
+        },
+        "validation_confidence_lvl": {
+          "type": "integer",
+          "example": 50
+        }
       }
     },
     "UserAnalysisDetail": {
@@ -356,6 +635,44 @@
         "analyzed_users_to_keep",
         "explanation"
       ]
+    },
+    "CheckDuplicateUserResponse": {
+      "type": "object",
+      "properties": {
+        "recommended_duplicate_user_id": {
+          "type": "string",
+          "description": "The recommended duplicate user ID if a potential duplicate is found."
+        },
+        "associated_duplicate_user_id_list": {
+          "type": "string",
+          "description": "A comma-separated list of associated duplicate user IDs."
+        },
+        "confidence_level": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The confidence level of the duplication check, as a percentage."
+        },
+        "regulated_account_included": {
+          "type": "boolean",
+          "description": "Indicates if a regulated account is included in the duplicate check."
+        },
+        "is_duplicate": {
+          "type": "boolean",
+          "description": "Indicates duplicate account is found."
+        },
+        "brand": {
+          "type": "string",
+          "description": "The brand associated with the user."
+        },
+        "explanation": {
+          "type": "string",
+          "description": "An explanation of the duplicate check result."
+        },
+        "result_set_id": {
+          "type": "string",
+          "description": "The ID of the result set for this check."
+        }
+      }
     }
   }
 }
