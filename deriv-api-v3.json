@@ -1026,6 +1026,10 @@
           "type": "string",
           "description": "The remarks text to be stored."
         },
+       "log_level": {
+          "type": "string",
+          "description": "This defines where to store the remarks, xano, BE or both."
+        },
         "created_by": {
           "type": "string",
           "description": "The internal user or system user for audit purposes."
