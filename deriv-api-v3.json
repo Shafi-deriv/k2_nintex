@@ -208,6 +208,44 @@
         }
       }
     },
+    "/CheckDuplicateUser": {
+      "get": {
+        "summary": "Check Duplicate User",
+        "description": "Checks for duplicate users based on the provided user_id.<br /><br /><b>Authentication:</b> not required",
+        "operationId": "checkDuplicateUser",
+        "tags": [
+          "V2"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "The User ID to check for duplicates.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Duplicate user check result",
+            "schema": {
+              "$ref": "#/definitions/CheckDuplicateUserResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/DisableAccountV2": {
       "post": {
         "summary": "Disable Account (V2)",
@@ -546,6 +584,46 @@
             "description": "Lock removal result",
             "schema": {
               "$ref": "#/definitions/SimpleSuccessResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/log-error": {
+      "post": {
+        "summary": "Log Error",
+        "description": "Logs an error encountered during a workflow step.<br /><br /><b>Authentication:</b> not required",
+        "operationId": "logErrorV2",
+        "tags": [
+          "V2"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Log Error input payload",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LogErrorInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Error logged successfully",
+            "schema": {
+              "$ref": "#/definitions/LogErrorResponse"
             }
           },
           "default": {
@@ -951,44 +1029,6 @@
             "description": "Owner validation details for workflow",
             "schema": {
               "$ref": "#/definitions/WorkflowSpmValidateOwnerResponse"
-            }
-          },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-     "/CheckDuplicateUser": {
-      "get": {
-        "summary": "Check Duplicate User",
-        "description": "Checks for duplicate users based on the provided user_id.<br /><br /><b>Authentication:</b> not required",
-        "operationId": "checkDuplicateUser",
-        "tags": [
-          "V2"
-        ],
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "query",
-            "description": "The User ID to check for duplicates.",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Duplicate user check result",
-            "schema": {
-              "$ref": "#/definitions/CheckDuplicateUserResponse"
             }
           },
           "default": {
@@ -1462,7 +1502,7 @@
         }
       }
     },
- "CheckDuplicateUserResponse": {
+    "CheckDuplicateUserResponse": {
       "type": "object",
       "properties": {
         "recommended_duplicate_user_id": {
@@ -1497,6 +1537,57 @@
         "result_set_id": {
           "type": "string",
           "description": "The ID of the result set for this check."
+        }
+      }
+    },
+    "LogErrorInput": {
+      "type": "object",
+      "properties": {
+        "created_by": {
+          "type": "string",
+          "description": "The internal user or system user for audit purposes."
+        },
+        "workflow_id": {
+          "type": "integer",
+          "description": "The ID of the workflow where the error occurred."
+        },
+        "workflow_name": {
+          "type": "string",
+          "description": "The name of the workflow where the error occurred."
+        },
+        "step_name": {
+          "type": "string",
+          "description": "The name of the workflow step where the error occurred."
+        },
+        "error_text": {
+          "type": "string",
+          "description": "Detailed error message."
+        },
+        "brand_code": {
+          "type": "string",
+          "description": "Denotes the brand related to the error. Values include: V1 or V2"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "The top level User ID associated with the error."
+        }
+      },
+      "required": [
+        "created_by",
+        "workflow_id",
+        "workflow_name",
+        "step_name",
+        "error_text",
+        "brand_code",
+        "user_id"
+      ]
+    },
+    "LogErrorResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The ID of the newly created log entry."
         }
       }
     }
