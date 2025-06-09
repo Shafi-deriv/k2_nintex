@@ -85,7 +85,7 @@
         }
       }
     },
-    "/v1-bridge/duplicate-user": {
+    "/v1-bridge/duplicate-user-test": {
       "get": {
         "summary": "Analyze Duplicate Users",
         "description": "Analyzes potential duplicate users based on the provided user ID, categorizing them for deactivation or retention with confidence levels and explanations.",
@@ -189,7 +189,7 @@
         }
       }
     },
-    "/v1-bridge/check-duplicate-user": {
+    "/v1-bridge/duplicate-user": {
       "get": {
         "summary": "Check Duplicate User",
         "description": "Checks for duplicate users based on the provided user_id.<br /><br /><b>Authentication:</b> not required",
