@@ -1161,6 +1161,10 @@
       "properties": {
         "success": {
           "type": "integer"
+        },
+        "message": {
+          "type": "string",
+          "description": "A message indicating the result of the operation."
         }
       }
     },
@@ -1235,6 +1239,10 @@
       "properties": {
         "id": {
           "type": "integer"
+        },
+        "message": {
+          "type": "string",
+          "description": "A message indicating the result of the notification."
         }
       }
     },
@@ -1262,6 +1270,10 @@
       "properties": {
         "success": {
           "type": "integer"
+        },
+        "message": {
+          "type": "string",
+          "description": "A message indicating the result of the operation."
         }
       }
     },
@@ -1487,6 +1499,10 @@
     "WorkflowDuplicateAccountResponse": {
       "type": "object",
       "properties": {
+        "analysis_id": {
+          "type": "string",
+          "description": "The unique ID for the analysis performed."
+        },
         "user_id": {
           "type": "string",
           "description": "The user ID associated with the duplicate account check."
