@@ -678,6 +678,11 @@
         "result_set_id": {
           "type": "string",
           "description": "The ID of the result set for this check."
+        },
+        "message": {
+          "type": "string",
+          "description": "A general message providing additional context or details about the duplicate check result.",
+          "example": "Duplicate user check completed successfully."
         }
       }
     }
