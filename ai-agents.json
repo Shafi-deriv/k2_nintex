@@ -204,6 +204,13 @@
             "description": "The User ID to check for duplicates.",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "analysis_id",
+            "in": "query",
+            "description": "An identifier for the specific analysis run or scenario.",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
