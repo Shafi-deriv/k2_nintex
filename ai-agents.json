@@ -6,7 +6,7 @@
     "description": "K2-compatible Swagger file for Duplicate Account, Required Screening, and Proof Of Ownership validation endpoints."
   },
   "host": "deriv-app.xano.io",
-  "basePath": "/api:QQZDcMfq",
+  "basePath": "/api:dYjlDR0_",
   "schemes": [
     "https"
   ],
