@@ -44,7 +44,10 @@
             }
           },
           "400": {
-            "description": "Invalid Lock data"
+            "description": "In case of error",
+            "schema": {
+              "$ref": "#/definitions/AddLockResponse"
+            }
           },
           "default": {
             "description": "Unexpected error (detail included)",
