@@ -44,14 +44,40 @@
             }
           },
           "400": {
-            "description": "In case of error",
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "$ref": "#/definitions/AddLockResponse"
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           },
           "default": {
-            "description": "Unexpected error (detail included)",
-            "schema": { "type": "string" }
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
           }
         }
       }
@@ -82,15 +108,40 @@
               "$ref": "#/definitions/AddRemarksResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -141,15 +192,40 @@
               "$ref": "#/definitions/SanctionsCheckResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -193,15 +269,40 @@
               "$ref": "#/definitions/SanctionsCheckResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -231,15 +332,40 @@
               "$ref": "#/definitions/CheckDuplicateUserResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -271,15 +397,40 @@
               "$ref": "#/definitions/SimpleSuccessResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -311,15 +462,40 @@
               "$ref": "#/definitions/SimpleSuccessResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -363,15 +539,40 @@
               "$ref": "#/definitions/AccountBalanceResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -415,15 +616,40 @@
               "$ref": "#/definitions/MT5AccountBalanceResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -470,15 +696,40 @@
               }
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -499,22 +750,46 @@
             "schema": {}
           },
           "400": {
-            "description": "Input Error. Check the request payload for issues."
+            "description": "Input Error. Check the request payload for issues.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
           },
           "403": {
-            "description": "Access denied. Additional privileges are needed access the requested resource."
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
           },
           "404": {
-            "description": "Not Found. The requested resource does not exist."
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
           },
           "429": {
-            "description": "Rate Limited. Too many requests."
+            "description": "Rate Limited. Too many requests.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
           },
           "500": {
-            "description": "Unexpected error"
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
           }
         }
       }
@@ -545,15 +820,40 @@
               "$ref": "#/definitions/NotifyClientResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -585,15 +885,40 @@
               "$ref": "#/definitions/SimpleSuccessResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -625,15 +950,40 @@
               "$ref": "#/definitions/LogErrorResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -669,6 +1019,42 @@
             "schema": {
               "$ref": "#/definitions/CountResponse"
             }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
           }
         }
       }
@@ -702,6 +1088,42 @@
             "description": "Open positions response",
             "schema": {
               "$ref": "#/definitions/OpenPositionsResponse"
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -737,6 +1159,42 @@
             "schema": {
               "$ref": "#/definitions/PendingOrdersResponse"
             }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
           }
         }
       }
@@ -771,6 +1229,42 @@
             "schema": {
               "$ref": "#/definitions/CountResponse"
             }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
           }
         }
       }
@@ -802,15 +1296,40 @@
               }
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -840,15 +1359,40 @@
               "$ref": "#/definitions/WorkflowUpdateResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -878,15 +1422,40 @@
               "$ref": "#/definitions/WorkflowDetailsResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -916,15 +1485,40 @@
               "$ref": "#/definitions/WorkflowClientScreeningResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -954,15 +1548,40 @@
               "$ref": "#/definitions/WorkflowSpmCheckPoiPooResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -992,15 +1611,40 @@
               "$ref": "#/definitions/WorkflowDuplicateAccountResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -1030,15 +1674,40 @@
               "$ref": "#/definitions/WorkflowSpmValidateOwnerResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -1046,6 +1715,15 @@
     }
   },
   "definitions": {
+    "ErrorMessage": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "A detailed error message."
+        }
+      }
+    },
     "AddRemarksV2Input": {
       "type": "object",
       "properties": {
