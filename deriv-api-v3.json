@@ -1712,6 +1712,48 @@
           }
         }
       }
+    },
+    "/Spilt": {
+      "get": {
+        "summary": "Split String into Array of Objects",
+        "description": "Splits a comma-separated string into an array of objects, each with a 'name' property.",
+        "operationId": "spiltString",
+        "tags": [
+          "V2"
+        ],
+        "parameters": [
+          {
+            "name": "args",
+            "in": "query",
+            "description": "Comma-separated string of arguments to split.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with an array of objects.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SpiltResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -2281,6 +2323,14 @@
         "id": {
           "type": "integer",
           "description": "The ID of the newly created log entry."
+        }
+      }
+    },
+    "SpiltResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
         }
       }
     }
