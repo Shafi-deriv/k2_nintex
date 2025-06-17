@@ -37,15 +37,40 @@
               "$ref": "#/definitions/DuplicateAccountResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -71,15 +96,40 @@
               "$ref": "#/definitions/DuplicateAccountData"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -175,15 +225,40 @@
               }
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -220,15 +295,40 @@
               "$ref": "#/definitions/CheckDuplicateUserResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -272,26 +372,112 @@
               "type": "array",
               "items": {
                 "$ref": "#/definitions/ScreeningItem"
-              },
-              "example": [
-                {
-                  "name": "PEP"
-                },
-                {
-                  "name": "Adverse Media"
-                }
-              ]
+              }
+            },
+            "examples": {
+              "application/json": {
+                "users_to_disable": [
+                  {
+                    "user_id": "800002",
+                    "confidence_lvl": 100,
+                    "explanation": "Primary user. Exact email match to search criteria.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "100001",
+                    "confidence_lvl": 99,
+                    "explanation": "Identical address, date of birth, phone number, and POI document to user 800002. Similar name (Hannah Wright vs Hannah Right).",
+                    "regulated_account_included": true
+                  }
+                ],
+                "analyzed_users_to_keep": [
+                  {
+                    "user_id": "100280",
+                    "confidence_lvl": 40,
+                    "explanation": "Similar email (hwright@hotmail.com) and similar name (Hannah Wright) to user 800002.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "102626",
+                    "confidence_lvl": 40,
+                    "explanation": "Similar email (hannah.wright.pro@gmail.com) and similar name (Hannah Wright) to user 800002.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "104492",
+                    "confidence_lvl": 40,
+                    "explanation": "Similar email (hannah.w567@yandex.com) and similar name (Hannah Wright) to user 800002.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "119106",
+                    "confidence_lvl": 40,
+                    "explanation": "Similar email (hannah.w@yahoo.com) and similar name (Hannah Wright) to user 800002.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "132670",
+                    "confidence_lvl": 40,
+                    "explanation": "Similar email (hannahw@outlook.com) and similar name (Hannah Wright) to user 800002.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "138604",
+                    "confidence_lvl": 40,
+                    "explanation": "ggg.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "143324",
+                    "confidence_lvl": 40,
+                    "explanation": "tytyt.",
+                    "regulated_account_included": true
+                  },
+                  {
+                    "user_id": "900002",
+                    "confidence_lvl": 99,
+                    "explanation": "gggg",
+                    "regulated_account_included": true
+                  }
+                ],
+                "explanation": "The search criteria provided matches(name/email similarity) but lack the convergence of multiple unique identifiers seen in the top matches."
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           },
           "default": {
-            "description": "Unexpected error",
+            "description": "Unexpected error (detail included).",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -335,15 +521,40 @@
               "$ref": "#/definitions/RequiredScreeningData"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -375,15 +586,40 @@
               "$ref": "#/definitions/ValidatePOOResponse"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -415,15 +651,40 @@
               "$ref": "#/definitions/ValidatePOOData"
             }
           },
-          "default": {
-            "description": "Unexpected error",
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
             }
           }
         }
@@ -431,6 +692,15 @@
     }
   },
   "definitions": {
+    "ErrorMessage": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "A detailed error message."
+        }
+      }
+    },
     "DuplicateAccountResponse": {
       "type": "object",
       "properties": {
