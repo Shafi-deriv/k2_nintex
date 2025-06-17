@@ -1713,7 +1713,7 @@
         }
       }
     },
-    "/Spilt": {
+    "/Spiltargs": {
       "get": {
         "summary": "Split String into Array of Objects",
         "description": "Splits a comma-separated string into an array of objects, each with a 'name' property.",
