@@ -17,6 +17,79 @@
     "application/json"
   ],
   "paths": {
+    "/duplicate-user-attribute": {
+      "get": {
+        "summary": "Duplicate User Attribute",
+        "description": "Returns duplicate user attributes for a list of user IDs and an analysis ID.",
+        "operationId": "duplicateUserAttribute",
+        "tags": [
+          "V2"
+        ],
+        "parameters": [
+          {
+            "name": "user_id_list",
+            "in": "query",
+            "description": "Comma-separated list of user IDs",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "analysis_id",
+            "in": "query",
+            "description": "Analysis ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of duplicate user attribute objects",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DuplicateUserAttributeResponseItem"
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "403": {
+            "description": "Access denied. Additional privileges are needed to access the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. An unexpected error occurred on the server.",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "default": {
+            "description": "Unexpected error (detail included).",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          }
+        }
+      }
+    },
     "/AddLockV2": {
       "post": {
         "summary": "Add Lock (V2)",
@@ -1757,6 +1830,26 @@
     }
   },
   "definitions": {
+    "DuplicateUserAttributeResponseItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "date_of_join": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "confidencelevel": {
+          "type": "string"
+        }
+      }
+    },
     "ErrorMessage": {
       "type": "object",
       "properties": {
