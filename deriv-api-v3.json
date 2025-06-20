@@ -1342,7 +1342,7 @@
         }
       }
     },
-    "/workflow-A": {
+    "/workflow": {
       "get": {
         "summary": "Get Workflows",
         "description": "Returns a list of workflows.<br /><br /><b>Authentication:</b> not required",
